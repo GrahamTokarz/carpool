@@ -203,7 +203,7 @@ app.get('/*', (req, res) => {
         req.url = req.url.replace("%20", " ")
     }
     if (req.url.startsWith("/createEvent(")) {
-        cear = req.url.split(")")[0].substring(13).split(",");
+        cear = req.url.split(")")[0].substring(13).split("puu6p77d3h");
         createEvent(cear[0], cear[2], cear[1], cear[3], cear[4]).then((out) => {
             console.log(out)
             res.send({r: out})
