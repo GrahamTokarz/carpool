@@ -4,7 +4,6 @@ const path = require('path');
 const app = express();
 const dotenv = require('dotenv');
 const { Pool } = require('pg');
-const token = require('./public/toxen.json');
 const idChars = ['1', 'Z', '5', 'T', 'S', 'W', '4', 'E', '7', 'Y', 'M', '3', 'H', 'U', 'X', 'A', 'D', 'Q', 'F', '8', 'N', '9', 'P', 'B', 'K', 'V', 'C', 'G', 'J', '6', 'R',]
 
 const pool = new Pool({
