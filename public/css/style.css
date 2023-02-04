@@ -50,10 +50,20 @@ body {
     padding: 15px;
 }
 
+.detailHead {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    column-gap: 10px;
+}
+
 .editables {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 10px;
+}
+.nameList p {
+    margin-right: 30px;
+    float: left;
 }
 
 .cars {

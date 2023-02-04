@@ -72,7 +72,7 @@ function login() {
     currentUser = document.getElementsByName("lUserCode")[0].value;
 
     // TEMPORARY
-    if (false) {
+    if (true) {
         currentCode = "PEBUXD";
         currentUser = "BWKFKH";
     }
@@ -119,6 +119,13 @@ function showDetails() {
                         return data.people[i];
                     }
                 }
+            }
+
+            console.log(data.people);
+            for (let i = 0; i < data.people.length; i++) {
+                var perp = document.createElement("p");
+                perp.innerHTML = data.people[i].name;
+                document.getElementById("nameList").appendChild(perp);
             }
 
             document.getElementsByName("jName")[1].value = getUser(currentUser).name;
