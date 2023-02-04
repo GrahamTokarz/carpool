@@ -72,7 +72,7 @@ function login() {
     currentUser = document.getElementsByName("lUserCode")[0].value;
 
     // TEMPORARY
-    if (true) {
+    if (false) {
         currentCode = "PEBUXD";
         currentUser = "BWKFKH";
     }
@@ -96,6 +96,9 @@ function login() {
 function showDetails() {
     while (document.getElementById("cars").firstChild) {
         document.getElementById("cars").removeChild(document.getElementById("cars").firstChild);
+    }
+    while (document.getElementById("nameList").firstChild) {
+        document.getElementById("nameList").removeChild(document.getElementById("nameList").firstChild);
     }
     document.getElementsByClassName("login")[0].style.display = "none";
     document.getElementsByClassName("details")[0].style.display = "block";
@@ -249,6 +252,7 @@ function showDetails() {
                                         var reg = "leaveCar(" + currentCode + delimiter + data.cars[leave].people + delimiter + currentUser + delimiter + data.cars[leave].owner_id + ")"
                                         xhttp.open("GET", reg, true);
                                         xhttp.send();
+                                        showDetails();
                                     }
                                 }
                             }
@@ -266,6 +270,7 @@ function showDetails() {
                             var reg = "addToCar(" + currentCode + delimiter + data.cars[join].people + delimiter + currentUser + delimiter + data.cars[join].owner_id + ")"
                             xhttp.open("GET", reg, true);
                             xhttp.send();
+                            showDetails();
                             
                         }
                         passport.classList.add("empty");
