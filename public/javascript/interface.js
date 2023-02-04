@@ -68,16 +68,20 @@ function showDetails() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             console.log(JSON.parse(this.responseText).r)
-            // Is user car driver
-            if (true) {
-                document.getElementsByClassName("carAdd")[0].style.display = "block";
-                document.getElementsByClassName("carEdit")[0].style.display = "none";
-            } else {
+            var amOwner = false;
+            for (let i = 0; i < JSON.parse(this.responseText).r.cars.length; i++) {
+                if (JSON.parse(this.responseText).r.cars[i].owner_id == currentUser) {
+                    amOwner = true;
+                }
+            }
+            if (amOwner) {
                 document.getElementsByClassName("carAdd")[0].style.display = "none";
                 document.getElementsByClassName("carEdit")[0].style.display = "block";
+            } else {
+                document.getElementsByClassName("carAdd")[0].style.display = "block";
+                document.getElementsByClassName("carEdit")[0].style.display = "none";
             }
-            // Is user owner
-            if (true) {
+            if (JSON.parse(this.responseText).r.trip.owner_id == currentUser) {
                 document.getElementsByClassName("eventEdit")[0].style.display = "block";
             } else {
                 document.getElementsByClassName("eventEdit")[0].style.display = "none";
