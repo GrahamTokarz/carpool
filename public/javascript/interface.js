@@ -237,6 +237,10 @@ function showDetails() {
                                 passport.classList.add("full");
                                 if (data.cars[i].people.split(', ')[j - 1] == currentUser) {
                                     passport.classList.add("user");
+                                    const leave = i;
+                                    passport.onclick = function() {
+                                        console.log("Leave " + leave + " car");
+                                    }
                                 }
                             }
                         }
