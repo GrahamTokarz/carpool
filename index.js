@@ -236,8 +236,8 @@ app.get('/*', (req, res) => {
     while (req.url.includes("%20")) {
         req.url = req.url.replace("%20", " ");
     }
-    while (event.description.includes("00nlb00")) {
-        event.description.replace('00nlb00', '\n');
+    while (req.url.includes("00nlb00")) {
+        req.url.replace('00nlb00', '\n');
     }
     if (req.url.startsWith("/createEvent(")) {
         cear = req.url.split(")")[0].substring(13).split(delimiter);
