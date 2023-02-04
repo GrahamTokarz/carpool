@@ -16,6 +16,8 @@ function submitEvent() {
             showPage(2);
             document.getElementById("eventCodeA").innerHTML = JSON.parse(this.responseText).r[0];
             document.getElementById("userCodeA").innerHTML = JSON.parse(this.responseText).r[1];
+            currentCode = JSON.parse(this.responseText).r[0];
+            currentUser = JSON.parse(this.responseText).r[1];
             console.log(JSON.parse(this.responseText).r)
         }
     };
