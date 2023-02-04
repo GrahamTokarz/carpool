@@ -232,7 +232,8 @@ function showDetails() {
                         }
                     } else {
                         if (data.cars[i].people.split(', ').length > j - 1) {
-                            if (data.cars[i].people.split(', ')[j - 1] != "[]") {
+                            if (data.cars[i].people.split(', ')[j - 1] != "") {
+                                console.log(data.cars[i].people.split(', '))
                                 passport.innerHTML = getUser(data.cars[i].people.split(', ')[j - 1]).name;
                                 passport.classList.add("full");
                                 if (data.cars[i].people.split(', ')[j - 1] == currentUser) {
