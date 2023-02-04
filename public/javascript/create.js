@@ -10,4 +10,13 @@ function submitEvent() {
     };
     console.log(event);
     console.log(user);
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(JSON.parse(this.responseText).r)
+        }
+    };
+    var reg = "createEvent(" + event.name + "," + event.description + "," + event.time + "," + user.name + "," + user.home + ")"
+    xhttp.open("GET", reg, true);
+    xhttp.send();
 }
