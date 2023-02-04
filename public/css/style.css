@@ -54,6 +54,7 @@ body {
     display: grid;
     grid-template-columns: 30% 70%;
     column-gap: 10px;
+    height: fit-content;
 }
 
 .editables {

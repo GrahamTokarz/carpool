@@ -242,6 +242,10 @@ function showDetails() {
                         }
                     }
                     if (!passport.classList.contains("full")) {
+                        const join = i;
+                        passport.onclick = function() {
+                            console.log("Join " + join + " car");
+                        }
                         passport.classList.add("empty");
                         passport.innerHTML = "Join";
                     }
