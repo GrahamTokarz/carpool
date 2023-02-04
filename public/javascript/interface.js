@@ -131,10 +131,10 @@ function showDetails() {
                 
                 var passengers = document.createElement("div");
                 passengers.classList.add("passengers");
-                passengers.appendChild(passer);
                 car.appendChild(passengers);
                 for (let j = 0; j < data.cars[i].people.split(',').length; j++) {
                     var passer = document.createElement("p");
+                    passengers.appendChild(passer);
                     for (let k = 0; k < data.cars[i].people.split(',')[j].length; k++) {
                         if (data.people[k].user_id == data.cars[i].people.split(',')[j]) {
                             passer.innerHTML = data.people[k].name;
