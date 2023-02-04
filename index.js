@@ -116,7 +116,6 @@ async function editEvent(name, date, description, tripID) {
 async function editPerson(tripID, name, home, userID) {
     out = null
     await pool.query("UPDATE people set name = '" + name +  "', address = '" + home + "' WHERE trip_id = '" + tripID + "' and user_id = '" + userID + "'").then((r) => {
-        console.log(r)
         out = "Success";
     });
     return out
@@ -137,7 +136,7 @@ async function createUser(name, adr, tripID) {
 
 async function createCar(tripID, capacity, description, meeting, notes, ownerID) {
     out = null
-    await pool.query("INSERT INTO cars (trip_id, model, capacity, people, location, notes, owner_id) VALUES ('" + tripID + "', '" + description + "', '" + parseInt(capacity) + "', '[]', '" + meeting + "', '" + notes + "', '" + ownerID + "')").then((r) => {
+    await pool.query("INSERT INTO cars (trip_id, model, capacity, people, location, notes, owner_id) VALUES ('" + tripID + "', '" + description + "', '" + parseInt(capacity) + "', '', '" + meeting + "', '" + notes + "', '" + ownerID + "')").then((r) => {
         out = "Success";
     });
     return out
@@ -146,6 +145,25 @@ async function createCar(tripID, capacity, description, meeting, notes, ownerID)
 async function editCar(tripID, capacity, description, meeting, notes, ownerID) {
     out = null
     await pool.query("UPDATE cars set capacity = '" + parseInt(capacity) +  "', location = '" + meeting + "', model = '" + description + "', notes = '" + notes + "' WHERE trip_id = '" + tripID + "' and owner_id = '" + ownerID + "'").then((r) => {
+        out = "Success";
+    });
+    return out
+}
+
+async function removeFromCar(tripID, people, userID, ownerID) {
+    idx = people.indexOf(userID)
+    people = people.splice(idx, 1)
+    out = null
+    await pool.query("UPDATE cars set people = '" + people.toString() +  "' WHERE trip_id = '" + tripID + "' and owner_id = '" + ownerID + "'").then((r) => {
+        out = "Success";
+    });
+    return out
+}
+
+async function addToCar(tripID, people, userID, ownerID) {
+    people = people.push(userID)
+    out = null
+    await pool.query("UPDATE cars set people = '" + people.toString() +  "' WHERE trip_id = '" + tripID + "' and owner_id = '" + ownerID + "'").then((r) => {
         out = "Success";
     });
     return out
@@ -239,7 +257,7 @@ app.get('/*', (req, res) => {
             });
         });
     } else if (req.url.startsWith("/editEvent(")){
-        eear = req.url.split(")")[0].substring(11).split("3!k4?66");
+        eear = req.url.split(")")[0].substring(11).split(delimiter);
         editEvent(eear[0], eear[2], eear[1], eear[3]).then((out) => {
             console.log(out)
             res.send({r: out})
