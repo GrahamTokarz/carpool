@@ -63,3 +63,19 @@ function editCar() {
     xhttp.open("GET", reg, true);
     xhttp.send();
 }
+function showDetails() {
+    // Is user car driver
+    if (true) {
+        document.getElementsByClassName("carAdd")[0].style.display = "block";
+        document.getElementsByClassName("carEdit")[0].style.display = "none";
+    } else {
+        document.getElementsByClassName("carAdd")[0].style.display = "none";
+        document.getElementsByClassName("carEdit")[0].style.display = "block";
+    }
+    // Is user owner
+    if (true) {
+        document.getElementsByClassName("eventEdit")[0].style.display = "block";
+    } else {
+        document.getElementsByClassName("eventEdit")[0].style.display = "none";
+    }
+}
