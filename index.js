@@ -60,7 +60,7 @@ async function personData(eventID) {
 async function newUserID(eventID) {
     success = false;
     idT = ""
-    for (i = 0; i < 10; i++){
+    for (i = 0; i < 6; i++){
         idT += idChars[Math.ceil(Math.random()*idChars.length) - 1]
     }
     out = null
@@ -77,7 +77,7 @@ async function newUserID(eventID) {
 async function newEventID() {
     success = false;
     idT = ""
-    for (i = 0; i < 10; i++){
+    for (i = 0; i < 6; i++){
         idT += idChars[Math.ceil(Math.random()*idChars.length) - 1]
     }
     out = null
@@ -111,6 +111,14 @@ async function editEvent(name, date, description, tripID) {
     return out
 }
 
+async function editPerson(userID, name, home, tripID) {
+    out = null
+    await pool.query("UPDATE people set name = '" + name +  "', home = '" + home + "' WHERE trip_id = '" + tripID + "' and user_id'" + userID + "'").then((r) => {
+        out = "Success";
+    });
+    return out
+}
+
 async function createUser(name, adr, tripID) {
     ownerID = await newUserID(tripID)
     out = ownerID
@@ -121,6 +129,22 @@ async function createUser(name, adr, tripID) {
             pool.query("INSERT INTO people (trip_id, address, name, user_id) VALUES ('" + tripID + "', '" + adr + "', '" + name + "', '" + ownerID + "')");
         }
     })
+    return out
+}
+
+async function createCar(tripID, capacity, description, meeting, notes, ownerID) {
+    out = null
+    await pool.query("INSERT INTO cars (trip_id, model, capacity, people, location, notes, owner_id) VALUES ('" + tripID + "', '" + description + "', '" + parseInt(capacity) + "', '" + [] + "', '" + meeting + "', '" + notes + "', '" + ownerID + "')").then((r) => {
+        out = "Success";
+    });
+    return out
+}
+
+async function editPerson(tripID, capacity, description, meeting, notes, ownerID) {
+    out = null
+    await pool.query("UPDATE cars set capacity = '" + parseInt(capacity) +  "', location = '" + meeting + "', model = '" + description + "', notes = '" + notes + "' WHERE trip_id = '" + tripID + "' and owner_id'" + ownerID + "'").then((r) => {
+        out = "Success";
+    });
     return out
 }
 
@@ -193,7 +217,7 @@ app.get('/*', (req, res) => {
         caar = req.url.split(")")[0].substring(8).split("~~;23~,n~>><>@<!>!!>#@<!>!ff>@");
         e = {}
         tripData(caar[0]).then((t) => {
-            e["trip"] = t.rows
+            e["trip"] = t.rows[0]
             carData(caar[0]).then((c) => {
                 e["cars"] = c.rows
                 personData(caar[0]).then((p) => {
@@ -202,6 +226,30 @@ app.get('/*', (req, res) => {
                     res.send({r: e})
                 });
             });
+        });
+    } else if (req.url.startsWith("/editEvent(")){
+        eear = req.url.split(")")[0].substring(11).split("~~;23~,n~>><>@<!>!!>#@<!>!ff>@");
+        editEvent(eear[0], eear[2], eear[1], eear[3]).then((out) => {
+            console.log(out)
+            res.send({r: out})
+        });
+    } else if (req.url.startsWith("/editPerson(")){
+        epar = req.url.split(")")[0].substring(12).split("~~;23~,n~>><>@<!>!!>#@<!>!ff>@");
+        editPerson(epar[0], epar[1], epar[2], epar[3]).then((out) => {
+            console.log(out)
+            res.send({r: out})
+        });
+    } else if (req.url.startsWith("/createCar(")){
+        ccar = req.url.split(")")[0].substring(11).split("~~;23~,n~>><>@<!>!!>#@<!>!ff>@");
+        createCar(ccar[0], ccar[1], ccar[2], ccar[3], ccar[4], ccar[5]).then((out) => {
+            console.log(out)
+            res.send({r: out})
+        })
+    } else if (req.url.startsWith("/editCar(")){
+        ecar = req.url.split(")")[0].substring(9).split("~~;23~,n~>><>@<!>!!>#@<!>!ff>@");
+        editCar(ecar[0], ecar[1], ecar[2], ecar[3], ecar[4], ecar[5]).then((out) => {
+            console.log(out)
+            res.send({r: out})
         });
     }
 })
