@@ -64,18 +64,27 @@ function editCar() {
     xhttp.send();
 }
 function showDetails() {
-    // Is user car driver
-    if (true) {
-        document.getElementsByClassName("carAdd")[0].style.display = "block";
-        document.getElementsByClassName("carEdit")[0].style.display = "none";
-    } else {
-        document.getElementsByClassName("carAdd")[0].style.display = "none";
-        document.getElementsByClassName("carEdit")[0].style.display = "block";
-    }
-    // Is user owner
-    if (true) {
-        document.getElementsByClassName("eventEdit")[0].style.display = "block";
-    } else {
-        document.getElementsByClassName("eventEdit")[0].style.display = "none";
-    }
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(JSON.parse(this.responseText).r)
+            // Is user car driver
+            if (true) {
+                document.getElementsByClassName("carAdd")[0].style.display = "block";
+                document.getElementsByClassName("carEdit")[0].style.display = "none";
+            } else {
+                document.getElementsByClassName("carAdd")[0].style.display = "none";
+                document.getElementsByClassName("carEdit")[0].style.display = "block";
+            }
+            // Is user owner
+            if (true) {
+                document.getElementsByClassName("eventEdit")[0].style.display = "block";
+            } else {
+                document.getElementsByClassName("eventEdit")[0].style.display = "none";
+            }
+        }
+    };
+    var reg = "getAll(" + currentCode + ")"
+    xhttp.open("GET", reg, true);
+    xhttp.send();
 }
