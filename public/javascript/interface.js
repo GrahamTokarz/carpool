@@ -254,7 +254,7 @@ function showDetails() {
                             }
                         }
                     }
-                    if (!passport.classList.contains("full")) {
+                    if (!passport.classList.contains("full") && usedPeople.indexOf(currentUser) == -1) {
                         const join = i;
                         passport.onclick = function() {
                             var xhttp = new XMLHttpRequest();
