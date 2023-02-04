@@ -66,6 +66,7 @@ function editCar() {
 function login() {
     currentCode = document.getElementsByName("lEventCode")[0].value;
     currentUser = document.getElementsByName("lUserCode")[0].value;
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -108,6 +109,13 @@ function showDetails() {
                 document.getElementsByClassName("eventEdit")[0].style.display = "none";
             }
 
+            function getUser(code) {
+                for (let i = 0; i < data.people.length; i++) {
+                    if (data.people[i].user_id == code) {
+                        return data.people[i];
+                    }
+                }
+            }
             
             document.getElementById("eventTitle").innerHTML = data.trip.name;
             var hostName;
@@ -118,6 +126,7 @@ function showDetails() {
             }
             document.getElementById("host").innerHTML = hostName;
             document.getElementById("eventDescription").innerHTML = data.trip.description;
+            document.getElementById("date").innerHTML = data.trip.date;
 
             var carBase = document.getElementById("cars");
             for (let i = 0; i < data.cars.length; i++) {
@@ -126,18 +135,54 @@ function showDetails() {
                 car.classList.add("car");
 
                 var driver = document.createElement("h3");
-                driver.innerHTML = data.cars[i].model;
+                driver.innerHTML = getUser(data.cars[i].owner_id).name + "'s";
                 car.appendChild(driver);
+
+                var model = document.createElement("h3");
+                model.innerHTML = data.cars[i].model;
+                car.appendChild(model);
+
+                var popup = document.createElement("p");
+                popup.classList.add("moreDetails");
+                popup.innerHTML = "+ More Details";
+                car.appendChild(popup);
+                const carsum = document.createElement("div");
+                carsum.style.display = "none";
+                popup.onclick = function() {
+                    if (carsum.style.display == "none") {
+                        carsum.style.display = "block";
+                    } else {
+                        carsum.style.display = "none";
+                    }
+                }
+                car.appendChild(carsum);
+                var notes = document.createElement("p");
+                notes.innerHTML = data.cars[i].notes;
+                carsum.appendChild(notes);
+                var mloc = document.createElement("p");
+                if (data.cars[i].location == "") {
+                    mloc.innerHTML = "Pickup";
+                } else {
+                    mloc.innerHTML = data.cars[i].location;
+                }
+                carsum.appendChild(mloc);
+
+                car.appendChild(document.createElement("hr"));
                 
                 var passengers = document.createElement("div");
                 passengers.classList.add("passengers");
                 car.appendChild(passengers);
-                for (let j = 0; j < data.cars[i].people.split(',').length; j++) {
-                    var passer = document.createElement("p");
-                    passengers.appendChild(passer);
-                    for (let k = 0; k < data.cars[i].people.split(',')[j].length; k++) {
-                        if (data.people[k].user_id == data.cars[i].people.split(',')[j]) {
-                            passer.innerHTML = data.people[k].name;
+                for (let j = 0; j <= data.cars[i].capacity; j++) {
+                    var passport = document.createElement("div");
+                    passport.classList.add("passport");
+                    passengers.appendChild(passport);
+                    if (j == 0) {
+                        passport.innerHTML = getUser(data.cars[i].owner_id).name;
+                    } else {
+                        if (data.cars[i].people.split(', ').length > j - 1) {
+                            if (data.cars[i].people.split(', ')[j - 1] != "[]") {
+                                passport.innerHTML = getUser(data.cars[i].people.split(', ')[j - 1]).name;
+                            }
                         }
                     }
                 }
