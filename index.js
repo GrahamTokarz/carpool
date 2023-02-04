@@ -113,7 +113,7 @@ async function editEvent(name, date, description, tripID) {
 
 async function editPerson(userID, name, home, tripID) {
     out = null
-    await pool.query("UPDATE people set name = '" + name +  "', home = '" + home + "' WHERE trip_id = '" + tripID + "' and user_id'" + userID + "'").then((r) => {
+    await pool.query("UPDATE people set name = '" + name +  "', address = '" + home + "' WHERE trip_id = '" + tripID + "' and user_id = '" + userID + "'").then((r) => {
         out = "Success";
     });
     return out
@@ -142,7 +142,7 @@ async function createCar(tripID, capacity, description, meeting, notes, ownerID)
 
 async function editCar(tripID, capacity, description, meeting, notes, ownerID) {
     out = null
-    await pool.query("UPDATE cars set capacity = '" + parseInt(capacity) +  "', location = '" + meeting + "', model = '" + description + "', notes = '" + notes + "' WHERE trip_id = '" + tripID + "' and owner_id'" + ownerID + "'").then((r) => {
+    await pool.query("UPDATE cars set capacity = '" + parseInt(capacity) +  "', location = '" + meeting + "', model = '" + description + "', notes = '" + notes + "' WHERE trip_id = '" + tripID + "' and owner_id = '" + ownerID + "'").then((r) => {
         out = "Success";
     });
     return out
