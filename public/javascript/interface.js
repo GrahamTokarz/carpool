@@ -68,8 +68,10 @@ function login() {
     currentUser = document.getElementsByName("lUserCode")[0].value;
 
     // TEMPORARY
-    currentCode = "PEBUXD";
-    currentUser = "BWKFKH";
+    if (false) {
+        currentCode = "PEBUXD";
+        currentUser = "BWKFKH";
+    }
     // TEMPORARY
 
     var xhttp = new XMLHttpRequest();
@@ -129,9 +131,9 @@ function showDetails() {
             if (JSON.parse(this.responseText).r.trip.owner_id == currentUser) {
                 document.getElementsByClassName("eventEdit")[0].style.display = "block";
 
-                document.getElementsByName("cEventName")[1].value = data.name;
-                document.getElementsByName("cEventDescription")[1].value = data.description;
-                document.getElementsByName("cEventTime")[1].value = data.date;
+                document.getElementsByName("cEventName")[1].value = data.trip.name;
+                document.getElementsByName("cEventDescription")[1].value = data.trip.description;
+                document.getElementsByName("cEventTime")[1].value = data.trip.date;
             } else {
                 document.getElementsByClassName("eventEdit")[0].style.display = "none";
             }
