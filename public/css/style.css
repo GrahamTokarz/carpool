@@ -98,6 +98,9 @@ body {
 .driverUser {
     font-weight: 800;
 }
+.inCar {
+    color: #00aa00;
+}
 .user {
     cursor: pointer;
     font-weight: 800;

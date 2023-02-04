@@ -121,9 +121,22 @@ function showDetails() {
                 }
             }
 
-            console.log(data.people);
+            var usedPeople = [];
+            for (let i = 0; i < data.cars.length; i++) {
+                usedPeople.push(data.cars[i].owner_id);
+                for (let j = 0; j < data.cars[i].people.split(',').length; j++) {
+                    usedPeople.push(data.cars[i].people.split(',')[j]);
+                }
+            }
+            console.log(usedPeople);
             for (let i = 0; i < data.people.length; i++) {
                 var perp = document.createElement("p");
+                if (data.people[i].user_id == currentUser) {
+                    perp.classList.add("driverUser");
+                }
+                if (usedPeople.includes(data.people[i].user_id)) {
+                    perp.classList.add("inCar");
+                }
                 perp.innerHTML = data.people[i].name;
                 document.getElementById("nameList").appendChild(perp);
             }
