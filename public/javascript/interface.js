@@ -10,10 +10,7 @@ function editEvent() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    ed = event.description
-    while (ed.includes("\n")) {
-        ed.replace("\n", '00nlb00');
-    }
+    ed = event.description.replace(/(\r\n|\r|\n)/g, '00nlb00');
     var reg = "createEvent(" + event.name + delimiter + ed + delimiter + event.time + delimiter + user.name + delimiter + user.home + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
