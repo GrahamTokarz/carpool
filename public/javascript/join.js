@@ -7,6 +7,8 @@ function submitJoin() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+            showPage(4);
+            document.getElementById("userCodeB").innerHTML = JSON.parse(this.responseText).r;
             console.log(JSON.parse(this.responseText).r)
         }
     };
