@@ -66,6 +66,7 @@ function editCar() {
 function login() {
     currentCode = document.getElementsByName("lEventCode")[0].value;
     userCode = document.getElementsByName("lUserCode")[0].value;
+    var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             if (JSON.parse(this.responseText).r) {
