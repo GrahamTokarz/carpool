@@ -19,7 +19,7 @@ function submitEvent() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "createEvent(" + event.name + "~~;23~,n~>@!!!#@!!ff>@" + event.description + "~~;23~,n~>@!!!#@!!ff>@" + event.time + "~~;23~,n~>@!!!#@!!ff>@" + user.name + "~~;23~,n~>@!!!#@!!ff>@" + user.home + ")"
+    var reg = "createEvent(" + event.name + "~~;23~,n~@!!!#@!!ff@" + event.description + "~~;23~,n~@!!!#@!!ff@" + event.time + "~~;23~,n~@!!!#@!!ff@" + user.name + "~~;23~,n~@!!!#@!!ff@" + user.home + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
 }

@@ -208,13 +208,13 @@ app.get('/*', (req, res) => {
             res.send({r: out})
         });
     } else if (req.url.startsWith("/createUser(")){
-        cuar = req.url.split(")")[0].substring(12).split("~~;23~,n~>@!!!#@!!ff>@");
+        cuar = req.url.split(")")[0].substring(12).split("~~;23~,n~@!!!#@!!ff@");
         createUser(cuar[0], cuar[1], cuar[2]).then((out) => {
             console.log(out)
             res.send({r: out})
         })
     } else if (req.url.startsWith("/getAll(")){
-        caar = req.url.split(")")[0].substring(8).split("~~;23~,n~>@!!!#@!!ff>@");
+        caar = req.url.split(")")[0].substring(8).split("~~;23~,n~@!!!#@!!ff@");
         e = {}
         tripData(caar[0]).then((t) => {
             e["trip"] = t.rows[0]
@@ -228,25 +228,25 @@ app.get('/*', (req, res) => {
             });
         });
     } else if (req.url.startsWith("/editEvent(")){
-        eear = req.url.split(")")[0].substring(11).split("~~;23~,n~>@!!!#@!!ff>@");
+        eear = req.url.split(")")[0].substring(11).split("~~;23~,n~@!!!#@!!ff@");
         editEvent(eear[0], eear[2], eear[1], eear[3]).then((out) => {
             console.log(out)
             res.send({r: out})
         });
     } else if (req.url.startsWith("/editPerson(")){
-        epar = req.url.split(")")[0].substring(12).split("~~;23~,n~>@!!!#@!!ff>@");
+        epar = req.url.split(")")[0].substring(12).split("~~;23~,n~@!!!#@!!ff@");
         editPerson(epar[0], epar[1], epar[2], epar[3]).then((out) => {
             console.log(out)
             res.send({r: out})
         });
     } else if (req.url.startsWith("/createCar(")){
-        ccar = req.url.split(")")[0].substring(11).split("~~;23~,n~>@!!!#@!!ff>@");
+        ccar = req.url.split(")")[0].substring(11).split("~~;23~,n~@!!!#@!!ff@");
         createCar(ccar[0], ccar[1], ccar[2], ccar[3], ccar[4], ccar[5]).then((out) => {
             console.log(out)
             res.send({r: out})
         })
     } else if (req.url.startsWith("/editCar(")){
-        ecar = req.url.split(")")[0].substring(9).split("~~;23~,n~>@!!!#@!!ff>@");
+        ecar = req.url.split(")")[0].substring(9).split("~~;23~,n~@!!!#@!!ff@");
         editCar(ecar[0], ecar[1], ecar[2], ecar[3], ecar[4], ecar[5]).then((out) => {
             console.log(out)
             res.send({r: out})
