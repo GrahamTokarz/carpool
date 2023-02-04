@@ -11,7 +11,7 @@ function submitJoin() {
             document.getElementById("userCodeB").innerHTML = JSON.parse(this.responseText).r;
             currentCode = user.code;
             currentUser = JSON.parse(this.responseText).r;
-            console.log(JSON.parse(this.responseText).r)
+            console.log(JSON.parse(this.responseText).r);
         }
     };
     var reg = "createUser(" + user.name + delimiter + user.home + delimiter + user.code + ")"
