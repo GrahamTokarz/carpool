@@ -146,6 +146,10 @@ app.get('/javascript/main.js', (req, res) => {
     res.sendFile('main.js', {root: path.join(__dirname, 'public/javascript')});
 });
 
+app.get('/images/smileyboi.svg', (req, res) => {
+    res.sendFile('smileyboi.svg', {root: path.join(__dirname, 'public/images')});
+});
+
 app.get('/*', (req, res) => {
     console.log(req.url)
     while (req.url.includes("'")) {
