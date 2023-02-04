@@ -11,7 +11,7 @@ const pool = new Pool({
     user: 'UGAHAX2023SBG',
     host: 'db.bit.io',
     database: 'UGAHAX2023SBG/carpool',
-    password: token.token,
+    password: process.env.token,
     port: 5432,
     ssl: true,
 });
