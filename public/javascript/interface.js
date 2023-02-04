@@ -10,7 +10,7 @@ function editEvent() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "editEvent(" + event.name + "~~;23~,n~>><>@<!>!!>#@<!>!ff>@" + event.description + "~~;23~,n~>><>@<!>!!>#@<!>!ff>@" + event.time + "~~;23~,n~>><>@<!>!!>#@<!>!ff>@" + currentCode + ")"
+    var reg = "editEvent(" + event.name + "~~;23~,n~>@!!!#@!!ff>@" + event.description + "~~;23~,n~>@!!!#@!!ff>@" + event.time + "~~;23~,n~>@!!!#@!!ff>@" + currentCode + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
 }
@@ -25,7 +25,7 @@ function editJoin() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "editPerson(" + currentCode + "~~;23~,n~>><>@<!>!!>#@<!>!ff>@" + user.name + "~~;23~,n~>><>@<!>!!>#@<!>!ff>@" + user.home + "~~;23~,n~>><>@<!>!!>#@<!>!ff>@" + currentUser + ")"
+    var reg = "editPerson(" + currentCode + "~~;23~,n~>@!!!#@!!ff>@" + user.name + "~~;23~,n~>@!!!#@!!ff>@" + user.home + "~~;23~,n~>@!!!#@!!ff>@" + currentUser + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
 }
@@ -42,7 +42,7 @@ function submitCar() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "createCar(" + currentCode + "~~;23~,n~>><>@<!>!!>#@<!>!ff>@" + car.capacity + "~~;23~,n~>><>@<!>!!>#@<!>!ff>@" + car.model + "~~;23~,n~>><>@<!>!!>#@<!>!ff>@" + car.location + "~~;23~,n~>><>@<!>!!>#@<!>!ff>@" + car.notes + "~~;23~,n~>><>@<!>!!>#@<!>!ff>@" + currentUser + ")"
+    var reg = "createCar(" + currentCode + "~~;23~,n~>@!!!#@!!ff>@" + car.capacity + "~~;23~,n~>@!!!#@!!ff>@" + car.model + "~~;23~,n~>@!!!#@!!ff>@" + car.location + "~~;23~,n~>@!!!#@!!ff>@" + car.notes + "~~;23~,n~>@!!!#@!!ff>@" + currentUser + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
 }
@@ -59,7 +59,7 @@ function editCar() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "editCar(" + currentCode + "~~;23~,n~>><>@<!>!!>#@<!>!ff>@" + car.capacity + "~~;23~,n~>><>@<!>!!>#@<!>!ff>@" + car.model + "~~;23~,n~>><>@<!>!!>#@<!>!ff>@" + car.location + "~~;23~,n~>><>@<!>!!>#@<!>!ff>@" + car.notes + "~~;23~,n~>><>@<!>!!>#@<!>!ff>@" + currentUser + ")"
+    var reg = "editCar(" + currentCode + "~~;23~,n~>@!!!#@!!ff>@" + car.capacity + "~~;23~,n~>@!!!#@!!ff>@" + car.model + "~~;23~,n~>@!!!#@!!ff>@" + car.location + "~~;23~,n~>@!!!#@!!ff>@" + car.notes + "~~;23~,n~>@!!!#@!!ff>@" + currentUser + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
 }
