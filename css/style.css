@@ -1,0 +1,41 @@
+:root {
+    --background: #eeeeff;
+    --highlight: #3399ff;
+    --text: #000000;
+
+    --font: "Alata";
+}
+* {
+    box-sizing: border-box;
+    font-family: var(--font);
+}
+body {
+    margin: 0px;
+
+    background-color: var(--background);
+    color: var(--text);
+}
+.menu {
+    padding-left: 20%;
+    padding-right: 20%;
+    background-color: var(--highlight);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.menu button {
+    padding: 20px;
+    font-size: 20px;
+
+    border: none;
+    border-radius: none;
+    border-left: 1px solid var(--text);
+
+    background-color: var(--highlight);
+    cursor: pointer;
+}
+.menu button:last-child {
+    border-right: 1px solid var(--text);
+}
+.menu button:hover {
+    filter: brightness(110%);
+}
