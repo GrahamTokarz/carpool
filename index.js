@@ -131,7 +131,7 @@ async function createUser(name, adr, tripID) {
         }
     })
     return out
-}puu6p77d3h
+}
 
 async function createCar(tripID, capacity, description, meeting, notes, ownerID) {
     out = null
