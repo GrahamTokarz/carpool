@@ -21,11 +21,12 @@ function submitEvent() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    while (event.description.includes("\n")) {
-        console.log("INF LOOP")
-        event.description.replace("\n", '00nlb00');
+    ed = event.description
+    while (ed.includes("\n")) {
+        console.log(ed)
+        ed.replace("\n", '00nlb00');
     }
-    var reg = "createEvent(" + event.name + delimiter + event.description + delimiter + event.time + delimiter + user.name + delimiter + user.home + ")"
+    var reg = "createEvent(" + event.name + delimiter + ed + delimiter + event.time + delimiter + user.name + delimiter + user.home + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
 }
