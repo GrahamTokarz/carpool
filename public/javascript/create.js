@@ -21,7 +21,7 @@ function submitEvent() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    ed = event.description.replace(/(\r\n|\r|\n)/g, '00nlb00');
+    ed = event.description.replace(/(\r\n|\r|\n)/g, '<br>');
     var reg = "createEvent(" + event.name + delimiter + ed + delimiter + event.time + delimiter + user.name + delimiter + user.home + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
