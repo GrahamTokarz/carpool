@@ -1,5 +1,6 @@
 var currentCode;
 var currentUser;
+var delimiter = "puu6p77d3h"
 
 function showPage(index) {
     var pages = ["welcome","create","createConfirmation","join","joinConfirmation","dashboard"];

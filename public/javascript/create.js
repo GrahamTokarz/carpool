@@ -19,7 +19,7 @@ function submitEvent() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "createEvent(" + event.name + "puu6p77d3h" + event.description + "puu6p77d3h" + event.time + "puu6p77d3h" + user.name + "puu6p77d3h" + user.home + ")"
+    var reg = "createEvent(" + event.name + delimiter + event.description + delimiter + event.time + delimiter + user.name + delimiter + user.home + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
 }

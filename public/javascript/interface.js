@@ -10,7 +10,7 @@ function editEvent() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "editEvent(" + event.name + "puu6p77d3h" + event.description + "puu6p77d3h" + event.time + "puu6p77d3h" + currentCode + ")"
+    var reg = "editEvent(" + event.name + delimiter + event.description + delimiter + event.time + delimiter + currentCode + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
 }
@@ -25,7 +25,7 @@ function editJoin() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "editPerson(" + currentCode + "puu6p77d3h" + user.name + "puu6p77d3h" + user.home + "puu6p77d3h" + currentUser + ")"
+    var reg = "editPerson(" + currentCode + delimiter + user.name + delimiter + user.home + delimiter + currentUser + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
 }
@@ -42,7 +42,7 @@ function submitCar() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "createCar(" + currentCode + "puu6p77d3h" + car.capacity + "puu6p77d3h" + car.model + "puu6p77d3h" + car.location + "puu6p77d3h" + car.notes + "puu6p77d3h" + currentUser + ")"
+    var reg = "createCar(" + currentCode + delimiter + car.capacity + delimiter + car.model + delimiter + car.location + delimiter + car.notes + delimiter + currentUser + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
 }
@@ -59,18 +59,26 @@ function editCar() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "editCar(" + currentCode + "puu6p77d3h" + car.capacity + "puu6p77d3h" + car.model + "puu6p77d3h" + car.location + "puu6p77d3h" + car.notes + "puu6p77d3h" + currentUser + ")"
+    var reg = "editCar(" + currentCode + delimiter + car.capacity + delimiter + car.model + delimiter + car.location + delimiter + car.notes + delimiter + currentUser + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
 }
 function login() {
     currentCode = document.getElementsByName("lEventCode")[0].value;
     userCode = document.getElementsByName("lUserCode")[0].value;
-    if (false) {
-        showDetails();
-    } else {
-        alert("Invalid code");
-    }
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (JSON.parse(this.responseText).r) {
+                showDetails();
+            } else {
+                alert("Invalid code");
+            }
+        }
+    };
+    var reg = "login(" + currentCode + delimiter + userCode + ")"
+    xhttp.open("GET", reg, true);
+    xhttp.send();
+    
 }
 function showDetails() {
     document.getElementsByClassName("login")[0].style.display = "none";
