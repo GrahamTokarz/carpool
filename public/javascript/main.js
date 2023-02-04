@@ -10,8 +10,5 @@ function showPage(index) {
             document.getElementsByClassName(pages[i])[0].style.display = "none";
         }
     }
-    if (index == 5) {
-        showDetails();
-    }
 }
 showPage(0);

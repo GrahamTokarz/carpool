@@ -63,7 +63,18 @@ function editCar() {
     xhttp.open("GET", reg, true);
     xhttp.send();
 }
+function login() {
+    currentCode = document.getElementsByName("lEventCode")[0].value;
+    userCode = document.getElementsByName("lUserCode")[0].value;
+    if (false) {
+        showDetails();
+    } else {
+        alert("Invalid code");
+    }
+}
 function showDetails() {
+    document.getElementsByClassName("login")[0].style.display = "none";
+    document.getElementsByClassName("details")[0].style.display = "block";
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
