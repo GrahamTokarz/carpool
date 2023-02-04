@@ -271,7 +271,7 @@ function showDetails() {
                         passport.classList.add("empty");
                         passport.innerHTML = "Join";
                     } else if (!passport.classList.contains("full") && usedPeople.indexOf(currentUser) != -1) {
-                        passport.classList.add("emptyInactive");
+                        passport.classList.add("inactive");
                         passport.innerHTML = "Empty Slot";
                     }
                 }

@@ -124,7 +124,7 @@ body {
     float: right;
     padding-right: 5px;
 }
-.emptyInactive {
+.inactive {
     color: #00cc00;
     font-weight: 800;
 }
