@@ -122,11 +122,25 @@ function showDetails() {
             var carBase = document.getElementById("cars");
             for (let i = 0; i < data.cars.length; i++) {
                 var car = document.createElement("div");
+                carBase.appendChild(car);
                 car.classList.add("car");
+
                 var driver = document.createElement("h3");
                 driver.innerHTML = data.cars[i].model;
                 car.appendChild(driver);
-                carBase.appendChild(car);
+                
+                var passengers = document.createElement("div");
+                passengers.classList.add("passengers");
+                passengers.appendChild(passer);
+                car.appendChild(passengers);
+                for (let j = 0; j < data.cars[i].people.length; j++) {
+                    var passer = document.createElement("p");
+                    for (let k = 0; k < data.cars[i].people[j].length; k++) {
+                        if (data.people[k].user_id == data.cars[i].people[j]) {
+                            passer.innerHTML = data.people[k].name;
+                        }
+                    }
+                }
             }
         }
     };
