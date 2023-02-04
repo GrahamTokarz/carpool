@@ -23,6 +23,8 @@ const pool = new Pool({
 //INSERT INTO cars (trip_id, model, capacity, people, meeting, location, notes, car_id, owner_id) VALUES ('123', 'cars', 3, 'trip', True, 'yourface', 'I like trip', 'car_bobbo', 'james_bobbo')
 //INSERT INTO people (trip_id, address, name, user_id) VALUES ('123', 'Home', 'boobo', 'james_bobbo')
 
+var delimiter = "puu6p77d3h"
+
 function deleteEvent(eventID) {
     pool.query("DELETE FROM trip WHERE trip_id = '" + eventID + "'", (e, r) => {
         pool.query("DELETE FROM cars WHERE trip_id = '" + eventID + "'", (e, r) => {
