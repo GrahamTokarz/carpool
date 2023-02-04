@@ -163,7 +163,11 @@ async function removeFromCar(tripID, people, userID, ownerID) {
 
 async function addToCar(tripID, people, userID, ownerID) {
     people = people.split(", ");
-    people.push(userID)
+    if (people = [""]) {
+        people = [userID];
+    } else {
+        people.push(userID);
+    }
     out = null;
     await pool.query("UPDATE cars set people = '" + people.toString() +  "' WHERE trip_id = '" + tripID + "' and owner_id = '" + ownerID + "'").then((r) => {
         out = "Success";
