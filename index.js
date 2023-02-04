@@ -151,7 +151,7 @@ async function editCar(tripID, capacity, description, meeting, notes, ownerID) {
 
 async function loginCheck(tripID, userID) {
     out = null
-    await pool.query("SELECT * from people WHERE trip_id = '" + tripID + "' and owner_id = '" + ownerID + "'").then((r) => {
+    await pool.query("SELECT * from people WHERE trip_id = '" + tripID + "' and owner_id = '" + userID + "'").then((r) => {
         out = r.rows.length > 0
     });
     return out
