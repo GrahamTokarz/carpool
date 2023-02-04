@@ -124,8 +124,8 @@ function showDetails() {
             var usedPeople = [];
             for (let i = 0; i < data.cars.length; i++) {
                 usedPeople.push(data.cars[i].owner_id);
-                for (let j = 0; j < data.cars[i].people.split(',').length; j++) {
-                    usedPeople.push(data.cars[i].people.split(',')[j]);
+                for (let j = 0; j < data.cars[i].people.split(', ').length; j++) {
+                    usedPeople.push(data.cars[i].people.split(', ')[j]);
                 }
             }
             console.log(usedPeople);
@@ -244,7 +244,16 @@ function showDetails() {
                     if (!passport.classList.contains("full")) {
                         const join = i;
                         passport.onclick = function() {
-                            console.log("Join " + join + " car");
+                            var xhttp = new XMLHttpRequest();
+                            xhttp.onreadystatechange = function() {
+                                if (this.readyState == 4 && this.status == 200) {
+                                    console.log(JSON.parse(this.responseText).r)
+                                }
+                            };
+                            var reg = "addToCar(" + currentCode + delimiter + data.cars[join].people + delimiter + currentUser + delimiter + data.cars[join].owner_id + ")"
+                            xhttp.open("GET", reg, true);
+                            xhttp.send();
+                            
                         }
                         passport.classList.add("empty");
                         passport.innerHTML = "Join";

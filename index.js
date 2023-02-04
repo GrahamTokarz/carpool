@@ -60,7 +60,6 @@ async function personData(eventID) {
 }
 
 async function newUserID(eventID) {
-    success = false;
     idT = "";
     for (i = 0; i < 6; i++){
         idT += idChars[Math.ceil(Math.random()*idChars.length) - 1];
@@ -151,6 +150,7 @@ async function editCar(tripID, capacity, description, meeting, notes, ownerID) {
 }
 
 async function removeFromCar(tripID, people, userID, ownerID) {
+    people = people.splice(", ");
     idx = people.indexOf(userID);
     people = people.splice(idx, 1);
     out = null;
@@ -161,9 +161,9 @@ async function removeFromCar(tripID, people, userID, ownerID) {
 }
 
 async function addToCar(tripID, people, userID, ownerID) {
-    people = people.push(userID);
+    people += ", " + userID;
     out = null;
-    await pool.query("UPDATE cars set people = '" + people.toString() +  "' WHERE trip_id = '" + tripID + "' and owner_id = '" + ownerID + "'").then((r) => {
+    await pool.query("UPDATE cars set people = '" + people +  "' WHERE trip_id = '" + tripID + "' and owner_id = '" + ownerID + "'").then((r) => {
         out = "Success";
     });
     return out;
@@ -236,13 +236,13 @@ app.get('/*', (req, res) => {
             console.log(out);
             res.send({r: out});
         });
-    } else if (req.url.startsWith("/createUser(")){
+    } else if (req.url.startsWith("/createUser(")) {
         cuar = req.url.split(")")[0].substring(12).split(delimiter);
         createUser(cuar[0], cuar[1], cuar[2]).then((out) => {
             console.log(out);
             res.send({r: out});
         });
-    } else if (req.url.startsWith("/getAll(")){
+    } else if (req.url.startsWith("/getAll(")) {
         caar = req.url.split(")")[0].substring(8).split(delimiter);
         e = {};
         tripData(caar[0]).then((t) => {
@@ -256,33 +256,38 @@ app.get('/*', (req, res) => {
                 });
             });
         });
-    } else if (req.url.startsWith("/editEvent(")){
+    } else if (req.url.startsWith("/editEvent(")) {
         eear = req.url.split(")")[0].substring(11).split(delimiter);
         editEvent(eear[0], eear[2], eear[1], eear[3]).then((out) => {
             console.log(out);
             res.send({r: out});
         });
-    } else if (req.url.startsWith("/editPerson(")){
+    } else if (req.url.startsWith("/editPerson(")) {
         epar = req.url.split(")")[0].substring(12).split(delimiter);
         editPerson(epar[0], epar[1], epar[2], epar[3]).then((out) => {
             console.log(out);
             res.send({r: out});
         });
-    } else if (req.url.startsWith("/createCar(")){
+    } else if (req.url.startsWith("/createCar(")) {
         ccar = req.url.split(")")[0].substring(11).split(delimiter);
         createCar(ccar[0], ccar[1], ccar[2], ccar[3], ccar[4], ccar[5]).then((out) => {
             console.log(out);
             res.send({r: out});
         });
-    } else if (req.url.startsWith("/editCar(")){
+    } else if (req.url.startsWith("/editCar(")) {
         ecar = req.url.split(")")[0].substring(9).split(delimiter);
         editCar(ecar[0], ecar[1], ecar[2], ecar[3], ecar[4], ecar[5]).then((out) => {
             console.log(out);
             res.send({r: out});
         });
-    } else if (req.url.startsWith("/login(")){
+    } else if (req.url.startsWith("/login(")) {
         lgar = req.url.split(")")[0].substring(7).split(delimiter);
         loginCheck(lgar[0], lgar[1]).then((out) => {
+            res.send({r: out});
+        });
+    } else if (req.url.startsWith("/addToCar(")) {
+        acar = req.url.split(")")[0].substring(10).split(delimiter);
+        addToCar(acar[0], acar[1], acar[2], acar[3]).then((out) => {
             res.send({r: out});
         });
     }
