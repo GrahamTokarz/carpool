@@ -13,6 +13,9 @@ function submitEvent() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+            showPage(2);
+            document.getElementById("eventCodeA").innerHTML = JSON.parse(this.responseText).r[0];
+            document.getElementById("userCodeA").innerHTML = JSON.parse(this.responseText).r[1];
             console.log(JSON.parse(this.responseText).r)
         }
     };
