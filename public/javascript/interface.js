@@ -65,7 +65,7 @@ function editCar() {
 }
 function login() {
     currentCode = document.getElementsByName("lEventCode")[0].value;
-    userCode = document.getElementsByName("lUserCode")[0].value;
+    currentUser = document.getElementsByName("lUserCode")[0].value;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -76,7 +76,7 @@ function login() {
             }
         }
     };
-    var reg = "login(" + currentCode + delimiter + userCode + ")"
+    var reg = "login(" + currentCode + delimiter + currentUser + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
     
