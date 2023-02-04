@@ -106,7 +106,10 @@ async function editEvent(name, date, description, tripID) {
 }
 
 async function createUser(name, adr, tripID) {
-
+    ownerID = await newUserID(tripID)
+    out = ownerID
+    await pool.query("INSERT INTO people (trip_id, address, name, user_id) VALUES ('" + tripID + "', '" + adr + "', '" + name + "', '" + ownerID + "')");
+    return out
 }
 
 const PORT = process.env.PORT || 8080
@@ -146,8 +149,8 @@ app.get('/javascript/main.js', (req, res) => {
     res.sendFile('main.js', {root: path.join(__dirname, 'public/javascript')});
 });
 
-app.get('/images/smileyboi.svg', (req, res) => {
-    res.sendFile('smileyboi.svg', {root: path.join(__dirname, 'public/images')});
+app.get('/images/smileyboy.svg', (req, res) => {
+    res.sendFile('smileyboy.svg', {root: path.join(__dirname, 'public/images')});
 });
 
 app.get('/*', (req, res) => {
@@ -159,12 +162,17 @@ app.get('/*', (req, res) => {
         req.url = req.url.replace("%20", " ")
     }
     if (req.url.startsWith("/createEvent(")) {
-        console.log(req.url)
         cear = req.url.split(")")[0].substring(13).split(",");
         createEvent(cear[0], cear[2], cear[1], cear[3], cear[4]).then((out) => {
             console.log(out)
             res.send({r: out})
         });
+    } else if (req.url.startsWith("/createUser(")){
+        cuar = req.url.split(")")[0].substring(12).split(",");
+        createUser(cuar[0], cuar[1], cuar[2]).then((out) => {
+            console.log(out)
+            res.send({r: out})
+        })
     }
 })
 
