@@ -150,9 +150,10 @@ async function editCar(tripID, capacity, description, meeting, notes, ownerID) {
 }
 
 async function removeFromCar(tripID, people, userID, ownerID) {
-    people = people.splice(", ");
+    people = people.split(", ");
     idx = people.indexOf(userID);
-    people = people.splice(idx, 1);
+    console.log(people, userID);
+    people.splice(idx, 1);
     out = null;
     await pool.query("UPDATE cars set people = '" + people.toString() +  "' WHERE trip_id = '" + tripID + "' and owner_id = '" + ownerID + "'").then((r) => {
         out = "Success";
@@ -288,6 +289,11 @@ app.get('/*', (req, res) => {
     } else if (req.url.startsWith("/addToCar(")) {
         acar = req.url.split(")")[0].substring(10).split(delimiter);
         addToCar(acar[0], acar[1], acar[2], acar[3]).then((out) => {
+            res.send({r: out});
+        });
+    } else if (req.url.startsWith("/leaveCar(")) {
+        lcar = req.url.split(")")[0].substring(10).split(delimiter);
+        removeFromCar(lcar[0], lcar[1], lcar[2], lcar[3]).then((out) => {
             res.send({r: out});
         });
     }

@@ -239,7 +239,15 @@ function showDetails() {
                                     passport.classList.add("user");
                                     const leave = i;
                                     passport.onclick = function() {
-                                        console.log("Leave " + leave + " car");
+                                        var xhttp = new XMLHttpRequest();
+                                        xhttp.onreadystatechange = function() {
+                                            if (this.readyState == 4 && this.status == 200) {
+                                                console.log(JSON.parse(this.responseText).r)
+                                            }
+                                        };
+                                        var reg = "leaveCar(" + currentCode + delimiter + data.cars[leave].people + delimiter + currentUser + delimiter + data.cars[leave].owner_id + ")"
+                                        xhttp.open("GET", reg, true);
+                                        xhttp.send();
                                     }
                                 }
                             }
