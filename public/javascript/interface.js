@@ -87,10 +87,11 @@ function showDetails() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(JSON.parse(this.responseText).r)
+            var data = JSON.parse(this.responseText).r;
+            console.log(data)
             var amOwner = false;
-            for (let i = 0; i < JSON.parse(this.responseText).r.cars.length; i++) {
-                if (JSON.parse(this.responseText).r.cars[i].owner_id == currentUser) {
+            for (let i = 0; i < data.cars.length; i++) {
+                if (data.cars[i].owner_id == currentUser) {
                     amOwner = true;
                 }
             }
@@ -105,6 +106,26 @@ function showDetails() {
                 document.getElementsByClassName("eventEdit")[0].style.display = "block";
             } else {
                 document.getElementsByClassName("eventEdit")[0].style.display = "none";
+            }
+
+            
+            document.getElementById("eventTitle").innerHTML = data.trip.name;
+            var hostName;
+            for (let i = 0; i < data.people.length; i++) {
+                if (data.people[i].user_id == data.trip.owner_id) {
+                    hostName = data.people[i].name;
+                }
+            }
+            document.getElementById("host").innerHTML = hostName;
+            document.getElementById("eventDescription").innerHTML = data.trip.description;
+
+            var carBase = document.getElementById("cars");
+            for (let i = 0; i < data.cars.length; i++) {
+                var car = document.createElement("div");
+                var driver = document.createElement("h3");
+                driver.innerHTML = data.model;
+                car.appendChild(driver);
+                carBase.appendChild(car);
             }
         }
     };

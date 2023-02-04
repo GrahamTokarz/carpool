@@ -104,6 +104,9 @@
                     <button onclick="login()">Login</button>
                 </div>
                 <div class="details" style="display: none;">
+                    <h2 id="eventTitle"></h2>
+                    <p>Host: <b id="host"></b></p>
+                    <p id="eventDescription"></p>
                     <h2>Cars</h2>
                     <div id="cars" class="cars"></div>
                     <div class="editables">
@@ -118,7 +121,7 @@
                             <p>Additional Notes</p>
                             <input type="text" placeholder="No trunk space" autocomplete="street-address" name="vNotes">
                             <br><br>
-                            <button onclick="submitCar()">Change</button>
+                            <button onclick="submitCar()">Submit</button>
                         </div>
                         <div class="carEdit">
                             <h2>Edit Your Car</h2>
