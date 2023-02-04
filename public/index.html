@@ -21,8 +21,8 @@
         <div class="menu">
             <button onclick="showPage(0)">Home</button>
             <button onclick="showPage(1)">Make an event</button>
-            <button onclick="showPage(2)">Join an event</button>
-            <button onclick="showPage(3)">Trip Dashboard</button>
+            <button onclick="showPage(3)">Join an event</button>
+            <button onclick="showPage(5)">Trip Dashboard</button>
         </div>
         <div class="content">
             <div class="welcome">
@@ -64,6 +64,15 @@
                 <br><br>
                 <button onclick="submitEvent()">Submit</button>
             </div>
+            <div class="createConfirmation">
+                <h1>Success!</h1>
+                <p>Your event was successfully created. To invite others to the event, use this code <b id="eventCodeA"></b>.</p>
+                <p>Your event was successfully created. To edit your details later or arrange the trip, use this code <b id="userCodeA"></b>.</p>
+                <p>
+                    These codes are very important. Write them down or save them somewhere so you can access them later.
+                    Without these codes, you'll lose access to your event. That wouldn't be good at all.
+                </p>
+            </div>
             <div class="join">
                 <h1>Join an event</h1>
                 <p>Event code</p>
@@ -74,6 +83,10 @@
                 <input type="text" placeholder="123 Apple Lane" autocomplete="street-address" name="jHome">
                 <br><br>
                 <button onclick="submitJoin()">Submit</button>
+            </div>
+            <div class="joinConfirmation">
+                <h1>Success!</h1>
+                <p>Your event was successfully created. To invite others to the event, use this code <b>potato</b>.</p>
             </div>
             <div class="dashboard">
                 <h1>Dashboard</h1>
@@ -86,9 +99,9 @@
         </div>
     </body>
     <footer>
+        <script src = "javascript/main.js" type = "text/javascript"></script>
+
         <script src = "javascript/create.js" type = "text/javascript"></script>
         <script src = "javascript/join.js" type = "text/javascript"></script>
-        
-        <script src = "javascript/main.js" type = "text/javascript"></script>
     </footer>
 </html>
