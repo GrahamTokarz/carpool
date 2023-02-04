@@ -85,3 +85,25 @@ body {
     border: 1px solid black;
     border-radius: 5px;
 }
+.user {
+    cursor: pointer;
+    font-weight: 800;
+}
+.user:hover {
+    color: #cc0000;
+}
+.user:hover::after {
+    content: "-";
+    float: right;
+    padding-right: 5px;
+}
+.empty {
+    cursor: pointer;
+    color: #00cc00;
+    font-weight: 800;
+}
+.empty:hover::after {
+    content: "+";
+    float: right;
+    padding-right: 5px;
+}

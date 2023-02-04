@@ -67,6 +67,11 @@ function login() {
     currentCode = document.getElementsByName("lEventCode")[0].value;
     currentUser = document.getElementsByName("lUserCode")[0].value;
 
+    // TEMPORARY
+    currentCode = "PEBUXD";
+    currentUser = "BWKFKH";
+    // TEMPORARY
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -178,12 +183,24 @@ function showDetails() {
                     passengers.appendChild(passport);
                     if (j == 0) {
                         passport.innerHTML = getUser(data.cars[i].owner_id).name;
+                        passport.classList.add("full");
+                        if (data.cars[i].owner_id == currentUser) {
+                            passport.classList.add("user");
+                        }
                     } else {
                         if (data.cars[i].people.split(', ').length > j - 1) {
                             if (data.cars[i].people.split(', ')[j - 1] != "[]") {
                                 passport.innerHTML = getUser(data.cars[i].people.split(', ')[j - 1]).name;
+                                passport.classList.add("full");
+                                if (data.cars[i].people.split(', ')[j - 1] == currentUser) {
+                                    passport.classList.add("user");
+                                }
                             }
                         }
+                    }
+                    if (!passport.classList.contains("full")) {
+                        passport.classList.add("empty");
+                        passport.innerHTML = "Join";
                     }
                 }
             }
