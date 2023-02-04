@@ -270,7 +270,7 @@ function showDetails() {
                         }
                         passport.classList.add("empty");
                         passport.innerHTML = "Join";
-                    } else {
+                    } else if (usedPeople.indexOf(currentUser) != -1) {
                         passport.innerHTML = "Empty Slot";
                     }
                 }
