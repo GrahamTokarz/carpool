@@ -33,22 +33,28 @@ function deleteEvent(eventID) {
     })
 }
 
-function tripData(eventID) {
-    pool.query("SELECT * FROM trip WHERE trip_id = '" + eventID + "'", (e, r) => {
-        return r;
+async function tripData(eventID) {
+    out = null
+    await pool.query("SELECT * FROM trip WHERE trip_id = '" + eventID + "'").then((r) => {
+        out = r
     })
+    return out
 }
 
-function carData(eventID, carID) {
-    pool.query("SELECT * FROM cars WHERE trip_id = '" + eventID + "' and car_id = '" + carID + "'", (e, r) => {
-        return r;
+async function carData(eventID) {
+    out = null
+    await pool.query("SELECT * FROM cars WHERE trip_id = '" + eventID + "'").then((r) => {
+        out = r
     })
+    return out
 }
 
-function personData(eventID, userID) {
-    pool.query("SELECT * FROM people WHERE trip_id = '" + eventID + "' and user_id = '" + userID + "'", (e, r) => {
-        return r;
+async function personData(eventID) {
+    out = null
+    await pool.query("SELECT * FROM people WHERE trip_id = '" + eventID + "'").then((r) => {
+        out = r
     })
+    return out
 }
 
 async function newUserID(eventID) {
@@ -108,7 +114,13 @@ async function editEvent(name, date, description, tripID) {
 async function createUser(name, adr, tripID) {
     ownerID = await newUserID(tripID)
     out = ownerID
-    await pool.query("INSERT INTO people (trip_id, address, name, user_id) VALUES ('" + tripID + "', '" + adr + "', '" + name + "', '" + ownerID + "')");
+    await pool.query("SELECT * FROM trip WHERE trip_id = '" + tripID + "'").then((r) => {
+        if (r.rows.length == 0 ){
+            out = 404
+        } else {
+            pool.query("INSERT INTO people (trip_id, address, name, user_id) VALUES ('" + tripID + "', '" + adr + "', '" + name + "', '" + ownerID + "')");
+        }
+    })
     return out
 }
 
@@ -145,6 +157,10 @@ app.get('/javascript/join.js', (req, res) => {
     res.sendFile('join.js', {root: path.join(__dirname, 'public/javascript')});
 });
 
+app.get('/javascript/interface.js', (req, res) => {
+    res.sendFile('interface.js', {root: path.join(__dirname, 'public/javascript')});
+});
+
 app.get('/javascript/main.js', (req, res) => {
     res.sendFile('main.js', {root: path.join(__dirname, 'public/javascript')});
 });
@@ -168,11 +184,25 @@ app.get('/*', (req, res) => {
             res.send({r: out})
         });
     } else if (req.url.startsWith("/createUser(")){
-        cuar = req.url.split(")")[0].substring(12).split(",");
+        cuar = req.url.split(")")[0].substring(12).split("~~;23~,n~>><>@<!>!!>#@<!>!ff>@");
         createUser(cuar[0], cuar[1], cuar[2]).then((out) => {
             console.log(out)
             res.send({r: out})
         })
+    } else if (req.url.startsWith("/getAll(")){
+        caar = req.url.split(")")[0].substring(8).split("~~;23~,n~>><>@<!>!!>#@<!>!ff>@");
+        e = {}
+        tripData(caar[0]).then((t) => {
+            e["trip"] = t.rows
+            carData(caar[0]).then((c) => {
+                e["cars"] = c.rows
+                personData(caar[0]).then((p) => {
+                    e["people"] = p.rows
+                    console.log(e)
+                    res.send({r: e})
+                });
+            });
+        });
     }
 })
 
