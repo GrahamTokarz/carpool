@@ -11,7 +11,8 @@ function editEvent() {
         }
     };
     while (event.description.includes("\n")) {
-        event.description.replace('\n', '00nlb00');
+        console.log("INF LOOP")
+        event.description.replace("\n", '00nlb00');
     }
     var reg = "editEvent(" + event.name + delimiter + event.description + delimiter + event.time + delimiter + currentCode + ")"
     xhttp.open("GET", reg, true);
