@@ -19,10 +19,59 @@
     </head>
     <body>
         <div class="menu">
-            <button>Make an event</button>
-            <button>Edit an event</button>
-            <button>Join an event</button>
-            <button>Trip Dashboard</button>
+            <button onclick="showPage(0)">Home</button>
+            <button onclick="showPage(1)">Make an event</button>
+            <button onclick="showPage(2)">Edit an event</button>
+            <button onclick="showPage(3)">Join an event</button>
+            <button onclick="showPage(4)">Trip Dashboard</button>
+        </div>
+        <div class="content">
+            <div class="welcome">
+                <h1>Welcome to CarpPool</h1>
+                <h2>About</h2>
+                <p>
+                    This site is a way to set up carpools. This will allow group coordination smoothly and efficiently.
+                    Instead of scrambling in a group chat, this allows you to edit details of who is driving, pickup locations, passengers, and more with ease.
+                </p>
+                <h2>How to Use</h2>
+                <p>
+                    If this is your first time using CarpPool, have no fear. This site is easy to navigate and use.
+                </p>
+                <p>
+                    To create an event, click "Make an event". Follow the instructions there about the process.
+                    Once you have made the event, store the code provided. This is how you can edit the event later.
+                    There is another code used to invite people to the event. Share this code with members.
+                </p>
+                <p>
+                    To join an event, click "Join an event". Then enter the code your host provided. Add your details required.
+                </p>
+                <p>
+                    To edit what car you will ride in, clikc the "Trip Dashboard" button.
+                </p>
+            </div>
+            <div class="create">
+                <h1>Make an event</h1>
+                <p>Name of event</p>
+                <input type="text" placeholder="Journey to Atlantis">
+                <p>Event description</p>
+                <textarea rows="5" cols="100" placeholder="A 3 hour tour with people a various backgrounds"></textarea>
+                <p>Event date</p>
+                <input type="datetime-local">
+                <br><br><hr>
+                <p>Your name</p>
+                <input type="text" placeholder="John Doe">
+                <p>Pickup location</p>
+                <input type="text" placeholder="123 Apple Lane">
+            </div>
+            <div class="event">
+                <h1>Edit an event</h1>
+            </div>
+            <div class="join">
+                <h1>Join an event</h1>
+            </div>
+            <div class="dashboard">
+                <h1>Dashboard</h1>
+            </div>
         </div>
     </body>
     <footer>

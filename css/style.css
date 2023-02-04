@@ -16,11 +16,11 @@ body {
     color: var(--text);
 }
 .menu {
-    padding-left: 20%;
-    padding-right: 20%;
+    padding-left: 15%;
+    padding-right: 15%;
     background-color: var(--highlight);
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 .menu button {
     padding: 20px;
@@ -38,4 +38,8 @@ body {
 }
 .menu button:hover {
     filter: brightness(110%);
+}
+
+.content {
+    padding: 15px;
 }
