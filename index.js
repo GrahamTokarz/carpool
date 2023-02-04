@@ -95,7 +95,7 @@ async function createEvent(name, date, description, usName, usAdr) {
     tripID = await newEventID()
     ownerID = await newUserID(tripID)
     out = [tripID, ownerID]
-    await pool.query("INSERT INTO trip (trip_id, cars, date, name, description, owner_id) VALUES ('" + tripID + "', '[]', '" + date + "', '" + name + "', '" + description + "', '" + ownerID + "')").then((r) => {
+    await pool.query("INSERT INTO trip (trip_id, date, name, description, owner_id) VALUES ('" + tripID + "', '" + date + "', '" + name + "', '" + description + "', '" + ownerID + "')").then((r) => {
         pool.query("INSERT INTO people (trip_id, address, name, user_id) VALUES ('" + tripID + "', '" + usAdr + "', '" + usName + "', '" + ownerID + "')").then((r) => {
             out = "Success";
         });
