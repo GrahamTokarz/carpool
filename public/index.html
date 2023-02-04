@@ -6,12 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#11B5E4">
+        <meta name="theme-color" content="#3399ff">
         <meta property="og:site_name" content="CarpPool">
         <meta name="description" content="A way to schedule all of your carpools together.">
-        <meta property="og:image" content="images/lobster.png">
+        <meta property="og:image" content="images/smileyboy.svg">
 
-        <link rel="icon" type="image/x-icon" href="images/lobster.png">
+        <link rel="icon" type="image/x-icon" href="images/smileyboy.svg">
 
         <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'>
 
@@ -67,13 +67,13 @@
             <div class="join">
                 <h1>Join an event</h1>
                 <p>Event code</p>
-                <input type="text" placeholder="1A2B3C" autocomplete="off">
+                <input type="text" placeholder="1A2B3C" autocomplete="off" name="jCode">
                 <p>Your name</p>
-                <input type="text" placeholder="John Doe" autocomplete="name">
+                <input type="text" placeholder="John Doe" autocomplete="name" name="jName">
                 <p>Pickup location</p>
-                <input type="text" placeholder="123 Apple Lane" autocomplete="street-address">
+                <input type="text" placeholder="123 Apple Lane" autocomplete="street-address" name="jHome">
                 <br><br>
-                <button>Submit</button>
+                <button onclick="submitJoin()">Submit</button>
             </div>
             <div class="dashboard">
                 <h1>Dashboard</h1>
