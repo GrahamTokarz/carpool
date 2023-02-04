@@ -111,9 +111,9 @@ function showDetails() {
             
             document.getElementById("eventTitle").innerHTML = data.trip.name;
             var hostName;
-            for (let i = 0; i < data.people.split(',').length; i++) {
-                if (data.people.split(',')[i].user_id == data.trip.owner_id) {
-                    hostName = data.people.split(',')[i].name;
+            for (let i = 0; i < data.people.length; i++) {
+                if (data.people[i].user_id == data.trip.owner_id) {
+                    hostName = data.people[i].name;
                 }
             }
             document.getElementById("host").innerHTML = hostName;
@@ -136,8 +136,8 @@ function showDetails() {
                 for (let j = 0; j < data.cars[i].people.split(',').length; j++) {
                     var passer = document.createElement("p");
                     for (let k = 0; k < data.cars[i].people.split(',')[j].length; k++) {
-                        if (data.people.split(',')[k].user_id == data.cars[i].people.split(',')[j]) {
-                            passer.innerHTML = data.people.split(',')[k].name;
+                        if (data.people[k].user_id == data.cars[i].people.split(',')[j]) {
+                            passer.innerHTML = data.people[k].name;
                         }
                     }
                 }
