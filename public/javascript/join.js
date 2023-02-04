@@ -14,7 +14,7 @@ function submitJoin() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "createUser(" + user.name + "3!k4?6@6" + user.home + "3!k4?6@6" + user.code + ")"
+    var reg = "createUser(" + user.name + "3!k4?6o6" + user.home + "3!k4?6o6" + user.code + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
 }

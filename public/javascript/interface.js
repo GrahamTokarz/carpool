@@ -10,7 +10,7 @@ function editEvent() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "editEvent(" + event.name + "3!k4?6@6" + event.description + "3!k4?6@6" + event.time + "3!k4?6@6" + currentCode + ")"
+    var reg = "editEvent(" + event.name + "3!k4?6o6" + event.description + "3!k4?6o6" + event.time + "3!k4?6o6" + currentCode + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
 }
@@ -25,7 +25,7 @@ function editJoin() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "editPerson(" + currentCode + "3!k4?6@6" + user.name + "3!k4?6@6" + user.home + "3!k4?6@6" + currentUser + ")"
+    var reg = "editPerson(" + currentCode + "3!k4?6o6" + user.name + "3!k4?6o6" + user.home + "3!k4?6o6" + currentUser + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
 }
@@ -42,7 +42,7 @@ function submitCar() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "createCar(" + currentCode + "3!k4?6@6" + car.capacity + "3!k4?6@6" + car.model + "3!k4?6@6" + car.location + "3!k4?6@6" + car.notes + "3!k4?6@6" + currentUser + ")"
+    var reg = "createCar(" + currentCode + "3!k4?6o6" + car.capacity + "3!k4?6o6" + car.model + "3!k4?6o6" + car.location + "3!k4?6o6" + car.notes + "3!k4?6o6" + currentUser + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
 }
@@ -59,7 +59,7 @@ function editCar() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "editCar(" + currentCode + "3!k4?6@6" + car.capacity + "3!k4?6@6" + car.model + "3!k4?6@6" + car.location + "3!k4?6@6" + car.notes + "3!k4?6@6" + currentUser + ")"
+    var reg = "editCar(" + currentCode + "3!k4?6o6" + car.capacity + "3!k4?6o6" + car.model + "3!k4?6o6" + car.location + "3!k4?6o6" + car.notes + "3!k4?6o6" + currentUser + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
 }
