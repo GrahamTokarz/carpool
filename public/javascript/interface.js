@@ -96,30 +96,44 @@ function showDetails() {
             var data = JSON.parse(this.responseText).r;
             console.log(data)
             var amOwner = false;
+            var ownIndex;
             for (let i = 0; i < data.cars.length; i++) {
                 if (data.cars[i].owner_id == currentUser) {
+                    ownIndex = i;
                     amOwner = true;
                 }
             }
-            if (amOwner) {
-                document.getElementsByClassName("carAdd")[0].style.display = "none";
-                document.getElementsByClassName("carEdit")[0].style.display = "block";
-            } else {
-                document.getElementsByClassName("carAdd")[0].style.display = "block";
-                document.getElementsByClassName("carEdit")[0].style.display = "none";
-            }
-            if (JSON.parse(this.responseText).r.trip.owner_id == currentUser) {
-                document.getElementsByClassName("eventEdit")[0].style.display = "block";
-            } else {
-                document.getElementsByClassName("eventEdit")[0].style.display = "none";
-            }
-
+            
             function getUser(code) {
                 for (let i = 0; i < data.people.length; i++) {
                     if (data.people[i].user_id == code) {
                         return data.people[i];
                     }
                 }
+            }
+
+            document.getElementsByName("jName")[1].value = getUser(currentUser).name;
+            document.getElementsByName("jHome")[1].value = getUser(currentUser).home;
+            if (amOwner) {
+                document.getElementsByClassName("carAdd")[0].style.display = "none";
+                document.getElementsByClassName("carEdit")[0].style.display = "block";
+
+                document.getElementsByName("vCapacity")[1].value = data.cars[ownIndex].capacity;
+                document.getElementsByName("vDescription")[1].value = data.cars[ownIndex].description;
+                document.getElementsByName("vMeeting")[1].value = data.cars[ownIndex].location;
+                document.getElementsByName("vNotes")[1].value = data.cars[ownIndex].notes;
+            } else {
+                document.getElementsByClassName("carAdd")[0].style.display = "block";
+                document.getElementsByClassName("carEdit")[0].style.display = "none";
+            }
+            if (JSON.parse(this.responseText).r.trip.owner_id == currentUser) {
+                document.getElementsByClassName("eventEdit")[0].style.display = "block";
+
+                document.getElementsByName("cEventName")[1].value = data.name;
+                document.getElementsByName("cEventDescription")[1].value = data.description;
+                document.getElementsByName("cEventTime")[1].value = data.date;
+            } else {
+                document.getElementsByClassName("eventEdit")[0].style.display = "none";
             }
             
             document.getElementById("eventTitle").innerHTML = data.trip.name;
