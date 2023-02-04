@@ -4,6 +4,7 @@ function editEvent() {
         description: document.getElementsByName("cEventDescription")[1].value,
         time: document.getElementsByName("cEventTime")[1].value
     };
+    console.log(event.description);
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -178,7 +179,8 @@ function showDetails() {
             }
             document.getElementById("host").innerHTML = hostName;
             document.getElementById("eventDescription").innerHTML = data.trip.description;
-            document.getElementById("date").innerHTML = data.trip.date;
+            var dateString = data.trip.date;
+            document.getElementById("date").innerHTML = dateString.substring(0, dateString.indexOf("T")) + " " + dateString.substring(dateString.indexOf("T") + 1);
 
             var carBase = document.getElementById("cars");
             for (let i = 0; i < data.cars.length; i++) {
@@ -239,6 +241,7 @@ function showDetails() {
                             if (data.cars[i].people.split(', ')[j - 1] != "") {
                                 console.log(data.cars[i].people.split(', '))
                                 passport.innerHTML = getUser(data.cars[i].people.split(', ')[j - 1]).name;
+                                passport.title = getUser(data.cars[i].people.split(', ')[j - 1]).address;
                                 passport.classList.add("full");
                                 if (data.cars[i].people.split(', ')[j - 1] == currentUser) {
                                     passport.classList.add("user");
