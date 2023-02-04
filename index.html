@@ -21,9 +21,8 @@
         <div class="menu">
             <button onclick="showPage(0)">Home</button>
             <button onclick="showPage(1)">Make an event</button>
-            <button onclick="showPage(2)">Edit an event</button>
-            <button onclick="showPage(3)">Join an event</button>
-            <button onclick="showPage(4)">Trip Dashboard</button>
+            <button onclick="showPage(2)">Join an event</button>
+            <button onclick="showPage(3)">Trip Dashboard</button>
         </div>
         <div class="content">
             <div class="welcome">
@@ -46,28 +45,35 @@
                     To join an event, click "Join an event". Then enter the code your host provided. Add your details required.
                 </p>
                 <p>
-                    To edit what car you will ride in, clikc the "Trip Dashboard" button.
+                    To edit what car you will ride in, click the "Trip Dashboard" button.
                 </p>
             </div>
             <div class="create">
                 <h1>Make an event</h1>
                 <p>Name of event</p>
-                <input type="text" placeholder="Journey to Atlantis">
+                <input type="text" placeholder="Journey to Atlantis" autocomplete="none" name="cEventName">
                 <p>Event description</p>
-                <textarea rows="5" cols="100" placeholder="A 3 hour tour with people a various backgrounds"></textarea>
+                <textarea rows="5" cols="100" placeholder="A 3 hour tour with people a various backgrounds" name="cEventDescription"></textarea>
                 <p>Event date</p>
-                <input type="datetime-local">
+                <input type="datetime-local" name="cEventTime">
                 <br><br><hr>
                 <p>Your name</p>
-                <input type="text" placeholder="John Doe">
+                <input type="text" placeholder="John Doe" autocomplete="name" name="cEventUserName">
                 <p>Pickup location</p>
-                <input type="text" placeholder="123 Apple Lane">
-            </div>
-            <div class="event">
-                <h1>Edit an event</h1>
+                <input type="text" placeholder="123 Apple Lane" autocomplete="street-address" name="cEventUserHome">
+                <br><br>
+                <button onclick="submitEvent()">Submit</button>
             </div>
             <div class="join">
                 <h1>Join an event</h1>
+                <p>Event code</p>
+                <input type="text" placeholder="1A2B3C" autocomplete="off">
+                <p>Your name</p>
+                <input type="text" placeholder="John Doe" autocomplete="name">
+                <p>Pickup location</p>
+                <input type="text" placeholder="123 Apple Lane" autocomplete="street-address">
+                <br><br>
+                <button>Submit</button>
             </div>
             <div class="dashboard">
                 <h1>Dashboard</h1>
@@ -75,6 +81,9 @@
         </div>
     </body>
     <footer>
+        <script src = "javascript/create.js" type = "text/javascript"></script>
+        <script src = "javascript/join.js" type = "text/javascript"></script>
+        
         <script src = "javascript/main.js" type = "text/javascript"></script>
     </footer>
 </html>
