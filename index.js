@@ -140,7 +140,7 @@ async function createCar(tripID, capacity, description, meeting, notes, ownerID)
     return out
 }
 
-async function editPerson(tripID, capacity, description, meeting, notes, ownerID) {
+async function editCar(tripID, capacity, description, meeting, notes, ownerID) {
     out = null
     await pool.query("UPDATE cars set capacity = '" + parseInt(capacity) +  "', location = '" + meeting + "', model = '" + description + "', notes = '" + notes + "' WHERE trip_id = '" + tripID + "' and owner_id'" + ownerID + "'").then((r) => {
         out = "Success";
