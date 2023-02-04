@@ -9,6 +9,8 @@ function submitJoin() {
         if (this.readyState == 4 && this.status == 200) {
             showPage(4);
             document.getElementById("userCodeB").innerHTML = JSON.parse(this.responseText).r;
+            currentCode = user.code;
+            currentUser = JSON.parse(this.responseText).r;
             console.log(JSON.parse(this.responseText).r)
         }
     };

@@ -1,3 +1,6 @@
+var currentCode;
+var currentUser;
+
 function showPage(index) {
     var pages = ["welcome","create","createConfirmation","join","joinConfirmation","dashboard"];
     for (let i = 0; i < pages.length; i++) {
