@@ -124,3 +124,7 @@ body {
     float: right;
     padding-right: 5px;
 }
+.emptyInactive {
+    color: #00cc00;
+    font-weight: 800;
+}
