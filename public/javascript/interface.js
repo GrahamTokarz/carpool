@@ -13,6 +13,7 @@ function editEvent() {
     var reg = "editEvent(" + event.name + delimiter + event.description + delimiter + event.time + delimiter + currentCode + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
+    showDetails();
 }
 function editJoin() {
     var user = {
@@ -28,6 +29,7 @@ function editJoin() {
     var reg = "editPerson(" + currentCode + delimiter + user.name + delimiter + user.home + delimiter + currentUser + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
+    showDetails();
 }
 function submitCar() {
     var car = {
@@ -45,6 +47,7 @@ function submitCar() {
     var reg = "createCar(" + currentCode + delimiter + car.capacity + delimiter + car.model + delimiter + car.location + delimiter + car.notes + delimiter + currentUser + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
+    showDetails();
 }
 function editCar() {
     var car = {
@@ -62,6 +65,7 @@ function editCar() {
     var reg = "editCar(" + currentCode + delimiter + car.capacity + delimiter + car.model + delimiter + car.location + delimiter + car.notes + delimiter + currentUser + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
+    showDetails();
 }
 function login() {
     currentCode = document.getElementsByName("lEventCode")[0].value;
@@ -90,6 +94,9 @@ function login() {
     
 }
 function showDetails() {
+    while (document.getElementById("cars").firstChild) {
+        document.getElementById("cars").removeChild(document.getElementById("cars").firstChild);
+    }
     document.getElementsByClassName("login")[0].style.display = "none";
     document.getElementsByClassName("details")[0].style.display = "block";
     var xhttp = new XMLHttpRequest();
@@ -115,7 +122,7 @@ function showDetails() {
             }
 
             document.getElementsByName("jName")[1].value = getUser(currentUser).name;
-            document.getElementsByName("jHome")[1].value = getUser(currentUser).home;
+            document.getElementsByName("jHome")[1].value = getUser(currentUser).address;
             if (amOwner) {
                 document.getElementsByClassName("carAdd")[0].style.display = "none";
                 document.getElementsByClassName("carEdit")[0].style.display = "block";
