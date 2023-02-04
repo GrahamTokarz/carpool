@@ -49,3 +49,13 @@ body {
     height: calc(100vh - var(--menu-height));
     padding: 15px;
 }
+
+.editables {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+}
+
+.car {
+    border: 1px solid black;
+}

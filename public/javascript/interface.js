@@ -122,8 +122,9 @@ function showDetails() {
             var carBase = document.getElementById("cars");
             for (let i = 0; i < data.cars.length; i++) {
                 var car = document.createElement("div");
+                car.classList.add("car");
                 var driver = document.createElement("h3");
-                driver.innerHTML = data.model;
+                driver.innerHTML = data.cars[i].model;
                 car.appendChild(driver);
                 carBase.appendChild(car);
             }
