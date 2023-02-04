@@ -185,7 +185,7 @@ function showDetails() {
                         passport.innerHTML = getUser(data.cars[i].owner_id).name;
                         passport.classList.add("full");
                         if (data.cars[i].owner_id == currentUser) {
-                            passport.classList.add("user");
+                            passport.classList.add("driverUser");
                         }
                     } else {
                         if (data.cars[i].people.split(', ').length > j - 1) {
