@@ -208,13 +208,13 @@ app.get('/*', (req, res) => {
             res.send({r: out})
         });
     } else if (req.url.startsWith("/createUser(")){
-        cuar = req.url.split(")")[0].substring(12).split("3!k4?6o6");
+        cuar = req.url.split(")")[0].substring(12).split("puu6p77d3h");
         createUser(cuar[0], cuar[1], cuar[2]).then((out) => {
             console.log(out)
             res.send({r: out})
         })
     } else if (req.url.startsWith("/getAll(")){
-        caar = req.url.split(")")[0].substring(8).split("3!k4?6o6");
+        caar = req.url.split(")")[0].substring(8).split("puu6p77d3h");
         e = {}
         tripData(caar[0]).then((t) => {
             e["trip"] = t.rows[0]
@@ -234,19 +234,19 @@ app.get('/*', (req, res) => {
             res.send({r: out})
         });
     } else if (req.url.startsWith("/editPerson(")){
-        epar = req.url.split(")")[0].substring(12).split("3!k4?6o6");
+        epar = req.url.split(")")[0].substring(12).split("puu6p77d3h");
         editPerson(epar[0], epar[1], epar[2], epar[3]).then((out) => {
             console.log(out)
             res.send({r: out})
         });
     } else if (req.url.startsWith("/createCar(")){
-        ccar = req.url.split(")")[0].substring(11).split("3!k4?6o6");
+        ccar = req.url.split(")")[0].substring(11).split("puu6p77d3h");
         createCar(ccar[0], ccar[1], ccar[2], ccar[3], ccar[4], ccar[5]).then((out) => {
             console.log(out)
             res.send({r: out})
         })
     } else if (req.url.startsWith("/editCar(")){
-        ecar = req.url.split(")")[0].substring(9).split("3!k4?6o6");
+        ecar = req.url.split(")")[0].substring(9).split("puu6p77d3h");
         editCar(ecar[0], ecar[1], ecar[2], ecar[3], ecar[4], ecar[5]).then((out) => {
             console.log(out)
             res.send({r: out})
