@@ -21,6 +21,9 @@ function submitEvent() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
+    while (event.description.includes("\n")) {
+        event.description.replace('\n', '00nlb00');
+    }
     var reg = "createEvent(" + event.name + delimiter + event.description + delimiter + event.time + delimiter + user.name + delimiter + user.home + ")"
     xhttp.open("GET", reg, true);
     xhttp.send();
