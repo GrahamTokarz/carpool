@@ -130,7 +130,9 @@ function showDetails() {
             for (let i = 0; i < data.cars.length; i++) {
                 usedPeople.push(data.cars[i].owner_id);
                 for (let j = 0; j < data.cars[i].people.split(', ').length; j++) {
-                    usedPeople.push(data.cars[i].people.split(', ')[j]);
+                    if (data.cars[i].people.split(', ')[j] != "") {
+                        usedPeople.push(data.cars[i].people.split(', ')[j]);
+                    }
                 }
             }
             console.log(usedPeople);
@@ -239,7 +241,6 @@ function showDetails() {
                     } else {
                         if (data.cars[i].people.split(', ').length > j - 1) {
                             if (data.cars[i].people.split(', ')[j - 1] != "") {
-                                console.log(data.cars[i].people.split(', '))
                                 passport.innerHTML = getUser(data.cars[i].people.split(', ')[j - 1]).name;
                                 passport.title = getUser(data.cars[i].people.split(', ')[j - 1]).address;
                                 passport.classList.add("full");
@@ -262,7 +263,7 @@ function showDetails() {
                             }
                         }
                     }
-                    if (!passport.classList.contains("full") && usedPeople.indexOf(currentUser) == -1) {
+                    if (!passport.classList.contains("full") && !usedPeople.includes(currentUser)) {
                         const join = i;
                         passport.onclick = function() {
                             var xhttp = new XMLHttpRequest();
@@ -275,11 +276,10 @@ function showDetails() {
                             xhttp.open("GET", reg, true);
                             xhttp.send();
                             showDetails();
-                            
                         }
                         passport.classList.add("empty");
                         passport.innerHTML = "Join";
-                    } else if (!passport.classList.contains("full") && usedPeople.indexOf(currentUser) != -1) {
+                    } else if (!passport.classList.contains("full") && usedPeople.includes(currentUser)) {
                         passport.classList.add("inactive");
                         passport.innerHTML = "Empty Slot";
                     }
