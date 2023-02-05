@@ -23,6 +23,8 @@ function deleteEvent() {
     var reg = "deleteEvent(" + currentCode + ")";
     xhttp.open("GET", reg, true);
     xhttp.send();
+    document.getElementsByClassName("login")[0].style.display = "block";
+    document.getElementsByClassName("details")[0].style.display = "none";
 }
 function editEvent() {
     var event = {
