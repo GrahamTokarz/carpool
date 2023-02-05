@@ -27,9 +27,9 @@ var delimiter = "puu6p77d3h";
 
 async function deleteEvent(eventID) {
     out = null;
-    await pool.query("DELETE FROM trip WHERE trip_id = '" + eventID + "' and owner_id = '" + ownerID + "'").then((r) => {
-        pool.query("DELETE FROM trip WHERE trip_id = '" + eventID + "' and owner_id = '" + ownerID + "'").then((r) => {
-            pool.query("DELETE FROM trip WHERE trip_id = '" + eventID + "' and owner_id = '" + ownerID + "'").then((r) => {
+    await pool.query("DELETE FROM trip WHERE trip_id = '" + eventID + "'").then((r) => {
+        pool.query("DELETE FROM cars WHERE trip_id = '" + eventID + "'").then((r) => {
+            pool.query("DELETE FROM people WHERE trip_id = '" + eventID + "'").then((r) => {
                 out = "DELETED";
             });
         });
