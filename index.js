@@ -39,7 +39,7 @@ async function deleteEvent(eventID) {
 
 async function deleteCar(eventID, ownerID) {
     out = null;
-    await pool.query("DELETE FROM trip WHERE trip_id = '" + eventID + "' and owner_id = '" + ownerID + "'").then((r) => {
+    await pool.query("DELETE FROM cars WHERE trip_id = '" + eventID + "' and owner_id = '" + ownerID + "'").then((r) => {
         out = "DELETED";
     });
     return out;
