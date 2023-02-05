@@ -1,8 +1,26 @@
+const { delimiter } = require("path");
+
 function deleteCar() {
-    //
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(JSON.parse(this.responseText).r)
+        }
+    };
+    var reg = "deleteCar(" + currentCode + delimiter + currentUser + ")";
+    xhttp.open("GET", reg, true);
+    xhttp.send();
 }
 function deleteEvent() {
-    //
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(JSON.parse(this.responseText).r)
+        }
+    };
+    var reg = "deleteEvent(" + currentCode + ")";
+    xhttp.open("GET", reg, true);
+    xhttp.send();
 }
 function editEvent() {
     var event = {
@@ -18,7 +36,7 @@ function editEvent() {
         }
     };
     ed = event.description.replace(/(\r\n|\r|\n)/g, '<br>');
-    var reg = "createEvent(" + event.name + delimiter + ed + delimiter + event.time + delimiter + user.name + delimiter + user.home + ")"
+    var reg = "createEvent(" + event.name + delimiter + ed + delimiter + event.time + delimiter + user.name + delimiter + user.home + ")";
     xhttp.open("GET", reg, true);
     xhttp.send();
     showDetails();
@@ -34,7 +52,7 @@ function editJoin() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "editPerson(" + currentCode + delimiter + user.name + delimiter + user.home + delimiter + currentUser + ")"
+    var reg = "editPerson(" + currentCode + delimiter + user.name + delimiter + user.home + delimiter + currentUser + ")";
     xhttp.open("GET", reg, true);
     xhttp.send();
     showDetails();
@@ -52,7 +70,7 @@ function submitCar() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "createCar(" + currentCode + delimiter + car.capacity + delimiter + car.model + delimiter + car.location + delimiter + car.notes + delimiter + currentUser + ")"
+    var reg = "createCar(" + currentCode + delimiter + car.capacity + delimiter + car.model + delimiter + car.location + delimiter + car.notes + delimiter + currentUser + ")";
     xhttp.open("GET", reg, true);
     xhttp.send();
     showDetails();
@@ -70,7 +88,7 @@ function editCar() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "editCar(" + currentCode + delimiter + car.capacity + delimiter + car.model + delimiter + car.location + delimiter + car.notes + delimiter + currentUser + ")"
+    var reg = "editCar(" + currentCode + delimiter + car.capacity + delimiter + car.model + delimiter + car.location + delimiter + car.notes + delimiter + currentUser + ")";
     xhttp.open("GET", reg, true);
     xhttp.send();
     showDetails();
@@ -96,7 +114,7 @@ function login() {
             }
         }
     };
-    var reg = "login(" + currentCode + delimiter + currentUser + ")"
+    var reg = "login(" + currentCode + delimiter + currentUser + ")";
     xhttp.open("GET", reg, true);
     xhttp.send();
     
@@ -260,7 +278,7 @@ function showDetails() {
                                                 console.log(JSON.parse(this.responseText).r)
                                             }
                                         };
-                                        var reg = "leaveCar(" + currentCode + delimiter + data.cars[leave].people + delimiter + currentUser + delimiter + data.cars[leave].owner_id + ")"
+                                        var reg = "leaveCar(" + currentCode + delimiter + data.cars[leave].people + delimiter + currentUser + delimiter + data.cars[leave].owner_id + ")";
                                         xhttp.open("GET", reg, true);
                                         xhttp.send();
                                         showDetails();
@@ -278,7 +296,7 @@ function showDetails() {
                                     console.log(JSON.parse(this.responseText).r)
                                 }
                             };
-                            var reg = "addToCar(" + currentCode + delimiter + data.cars[join].people + delimiter + currentUser + delimiter + data.cars[join].owner_id + ")"
+                            var reg = "addToCar(" + currentCode + delimiter + data.cars[join].people + delimiter + currentUser + delimiter + data.cars[join].owner_id + ")";
                             xhttp.open("GET", reg, true);
                             xhttp.send();
                             showDetails();
