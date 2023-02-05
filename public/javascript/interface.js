@@ -1,3 +1,31 @@
+function deleteCar() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(JSON.parse(this.responseText).r)
+            showDetails();
+        }
+    };
+    var reg = "deleteCar(" + currentCode + delimiter + currentUser + ")";
+    xhttp.open("GET", reg, true);
+    xhttp.send();
+}
+function deleteEvent() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(JSON.parse(this.responseText).r)
+            currentCode = null;
+            currentUser = null;
+            showPage(0);
+        }
+    };
+    var reg = "deleteEvent(" + currentCode + ")";
+    xhttp.open("GET", reg, true);
+    xhttp.send();
+    document.getElementsByClassName("login")[0].style.display = "block";
+    document.getElementsByClassName("details")[0].style.display = "none";
+}
 function editEvent() {
     var event = {
         name: document.getElementsByName("cEventName")[1].value,
@@ -12,7 +40,7 @@ function editEvent() {
         }
     };
     ed = event.description.replace(/(\r\n|\r|\n)/g, '<br>');
-    var reg = "createEvent(" + event.name + delimiter + ed + delimiter + event.time + delimiter + user.name + delimiter + user.home + ")"
+    var reg = "createEvent(" + event.name + delimiter + ed + delimiter + event.time + delimiter + user.name + delimiter + user.home + ")";
     xhttp.open("GET", reg, true);
     xhttp.send();
     showDetails();
@@ -28,7 +56,7 @@ function editJoin() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "editPerson(" + currentCode + delimiter + user.name + delimiter + user.home + delimiter + currentUser + ")"
+    var reg = "editPerson(" + currentCode + delimiter + user.name + delimiter + user.home + delimiter + currentUser + ")";
     xhttp.open("GET", reg, true);
     xhttp.send();
     showDetails();
@@ -46,7 +74,7 @@ function submitCar() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "createCar(" + currentCode + delimiter + car.capacity + delimiter + car.model + delimiter + car.location + delimiter + car.notes + delimiter + currentUser + ")"
+    var reg = "createCar(" + currentCode + delimiter + car.capacity + delimiter + car.model + delimiter + car.location + delimiter + car.notes + delimiter + currentUser + ")";
     xhttp.open("GET", reg, true);
     xhttp.send();
     showDetails();
@@ -64,7 +92,7 @@ function editCar() {
             console.log(JSON.parse(this.responseText).r)
         }
     };
-    var reg = "editCar(" + currentCode + delimiter + car.capacity + delimiter + car.model + delimiter + car.location + delimiter + car.notes + delimiter + currentUser + ")"
+    var reg = "editCar(" + currentCode + delimiter + car.capacity + delimiter + car.model + delimiter + car.location + delimiter + car.notes + delimiter + currentUser + ")";
     xhttp.open("GET", reg, true);
     xhttp.send();
     showDetails();
@@ -90,7 +118,7 @@ function login() {
             }
         }
     };
-    var reg = "login(" + currentCode + delimiter + currentUser + ")"
+    var reg = "login(" + currentCode + delimiter + currentUser + ")";
     xhttp.open("GET", reg, true);
     xhttp.send();
     
@@ -130,7 +158,9 @@ function showDetails() {
             for (let i = 0; i < data.cars.length; i++) {
                 usedPeople.push(data.cars[i].owner_id);
                 for (let j = 0; j < data.cars[i].people.split(', ').length; j++) {
-                    usedPeople.push(data.cars[i].people.split(', ')[j]);
+                    if (data.cars[i].people.split(', ')[j] != "") {
+                        usedPeople.push(data.cars[i].people.split(', ')[j]);
+                    }
                 }
             }
             console.log(usedPeople);
@@ -239,7 +269,6 @@ function showDetails() {
                     } else {
                         if (data.cars[i].people.split(', ').length > j - 1) {
                             if (data.cars[i].people.split(', ')[j - 1] != "") {
-                                console.log(data.cars[i].people.split(', '))
                                 passport.innerHTML = getUser(data.cars[i].people.split(', ')[j - 1]).name;
                                 passport.title = getUser(data.cars[i].people.split(', ')[j - 1]).address;
                                 passport.classList.add("full");
@@ -253,7 +282,7 @@ function showDetails() {
                                                 console.log(JSON.parse(this.responseText).r)
                                             }
                                         };
-                                        var reg = "leaveCar(" + currentCode + delimiter + data.cars[leave].people + delimiter + currentUser + delimiter + data.cars[leave].owner_id + ")"
+                                        var reg = "leaveCar(" + currentCode + delimiter + data.cars[leave].people + delimiter + currentUser + delimiter + data.cars[leave].owner_id + ")";
                                         xhttp.open("GET", reg, true);
                                         xhttp.send();
                                         showDetails();
@@ -262,7 +291,7 @@ function showDetails() {
                             }
                         }
                     }
-                    if (!passport.classList.contains("full") && usedPeople.indexOf(currentUser) == -1) {
+                    if (!passport.classList.contains("full") && !usedPeople.includes(currentUser)) {
                         const join = i;
                         passport.onclick = function() {
                             var xhttp = new XMLHttpRequest();
@@ -271,15 +300,14 @@ function showDetails() {
                                     console.log(JSON.parse(this.responseText).r)
                                 }
                             };
-                            var reg = "addToCar(" + currentCode + delimiter + data.cars[join].people + delimiter + currentUser + delimiter + data.cars[join].owner_id + ")"
+                            var reg = "addToCar(" + currentCode + delimiter + data.cars[join].people + delimiter + currentUser + delimiter + data.cars[join].owner_id + ")";
                             xhttp.open("GET", reg, true);
                             xhttp.send();
                             showDetails();
-                            
                         }
                         passport.classList.add("empty");
                         passport.innerHTML = "Join";
-                    } else if (!passport.classList.contains("full") && usedPeople.indexOf(currentUser) != -1) {
+                    } else if (!passport.classList.contains("full") && usedPeople.includes(currentUser)) {
                         passport.classList.add("inactive");
                         passport.innerHTML = "Empty Slot";
                     }

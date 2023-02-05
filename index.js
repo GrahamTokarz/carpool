@@ -25,14 +25,24 @@ const pool = new Pool({
 
 var delimiter = "puu6p77d3h";
 
-function deleteEvent(eventID) {
-    pool.query("DELETE FROM trip WHERE trip_id = '" + eventID + "'", (e, r) => {
-        pool.query("DELETE FROM cars WHERE trip_id = '" + eventID + "'", (e, r) => {
-            pool.query("DELETE FROM people WHERE trip_id = '" + eventID + "'", (e, r) => {
-                console.log("Event Deleted.");
+async function deleteEvent(eventID) {
+    out = null;
+    await pool.query("DELETE FROM trip WHERE trip_id = '" + eventID + "'").then((r) => {
+        pool.query("DELETE FROM cars WHERE trip_id = '" + eventID + "'").then((r) => {
+            pool.query("DELETE FROM people WHERE trip_id = '" + eventID + "'").then((r) => {
+                out = "DELETED";
             });
         });
     });
+    return out;
+}
+
+async function deleteCar(eventID, ownerID) {
+    out = null;
+    await pool.query("DELETE FROM cars WHERE trip_id = '" + eventID + "' and owner_id = '" + ownerID + "'").then((r) => {
+        out = "DELETED";
+    });
+    return out;
 }
 
 async function tripData(eventID) {
@@ -162,10 +172,10 @@ async function removeFromCar(tripID, people, userID, ownerID) {
 }
 
 async function addToCar(tripID, people, userID, ownerID) {
-    people = people.split(", ");
-    if (people == [""]) {
+    if (people == '') {
         people = [userID];
     } else {
+        people = people.split(", ");
         people.push(userID);
     }
     out = null;
@@ -174,6 +184,7 @@ async function addToCar(tripID, people, userID, ownerID) {
     });
     return out;
 }
+
 
 async function loginCheck(tripID, userID) {
     out = null;
@@ -302,6 +313,16 @@ app.get('/*', (req, res) => {
     } else if (req.url.startsWith("/leaveCar(")) {
         lcar = req.url.split(")")[0].substring(10).split(delimiter);
         removeFromCar(lcar[0], lcar[1], lcar[2], lcar[3]).then((out) => {
+            res.send({r: out});
+        });
+    } else if (req.url.startsWith("/deleteCar(")) {
+        dcar = req.url.split(")")[0].substring(11).split(delimiter);
+        deleteCar(dcar[0], dcar[1]).then((out) => {
+            res.send({r: out});
+        });
+    } else if (req.url.startsWith("/deleteEvent(")) {
+        dear = req.url.split(")")[0].substring(13).split(delimiter);
+        deleteEvent(dear[0]).then((out) => {
             res.send({r: out});
         });
     }
