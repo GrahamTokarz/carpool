@@ -162,10 +162,10 @@ async function removeFromCar(tripID, people, userID, ownerID) {
 }
 
 async function addToCar(tripID, people, userID, ownerID) {
-    people = people.split(", ");
-    if (people == [""]) {
+    if (people == '') {
         people = [userID];
     } else {
+        people = people.split(", ");
         people.push(userID);
     }
     out = null;
@@ -174,6 +174,7 @@ async function addToCar(tripID, people, userID, ownerID) {
     });
     return out;
 }
+
 
 async function loginCheck(tripID, userID) {
     out = null;
