@@ -1,10 +1,9 @@
-const { delimiter } = require("path");
-
 function deleteCar() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             console.log(JSON.parse(this.responseText).r)
+            showDetails();
         }
     };
     var reg = "deleteCar(" + currentCode + delimiter + currentUser + ")";
@@ -16,6 +15,9 @@ function deleteEvent() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             console.log(JSON.parse(this.responseText).r)
+            currentCode = null;
+            currentUser = null;
+            showPage(0);
         }
     };
     var reg = "deleteEvent(" + currentCode + ")";
