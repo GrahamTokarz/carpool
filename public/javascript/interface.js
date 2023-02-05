@@ -1,3 +1,9 @@
+function deleteCar() {
+    //
+}
+function deleteEvent() {
+    //
+}
 function editEvent() {
     var event = {
         name: document.getElementsByName("cEventName")[1].value,
