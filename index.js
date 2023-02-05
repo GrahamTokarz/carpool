@@ -321,7 +321,7 @@ app.get('/*', (req, res) => {
             res.send({r: out});
         });
     } else if (req.url.startsWith("/deleteEvent(")) {
-        dear = req.url.split(")")[0].substring(12).split(delimiter);
+        dear = req.url.split(")")[0].substring(13).split(delimiter);
         deleteEvent(dear[0]).then((out) => {
             res.send({r: out});
         });
