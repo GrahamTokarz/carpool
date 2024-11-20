@@ -76,3 +76,5 @@ CarpPool was named as such because we love bad puns and fishing.
 
 <p style="text-align: center;">🦞 🦞 🦞 🦞 🦞 🦞 🦞</p>
 
+
+(It is worth nothing that I - Graham - provided substancial assistance to Simon with the backend and server, as it was his first time completing such a project.)
